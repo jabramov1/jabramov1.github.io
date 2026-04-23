@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joseph Abramov — Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --sidebar-bg: #0a0a0a;
+            --sidebar-text: #e0e0d8;
+            --sidebar-muted: #4a4a42;
+            --accent: #d4ff47;
+            --bg: #fafaf8;
+            --text: #111110;
+            --body: #444440;
+            --muted: #999990;
+            --border: #e8e8e2;
+            --sidebar-w: 240px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ── SIDEBAR ───────────────────────────────────────── */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-w);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            padding: 40px 28px;
+            z-index: 100;
+            transform: translateX(-100%);
+            animation: slideIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--sidebar-text);
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+
+        .sidebar-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            color: var(--sidebar-muted);
+            margin-top: 5px;
+            letter-spacing: 0.2px;
+        }
+
+        .sidebar-grad {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: #333330;
+            margin-top: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background: #1a1a18;
+            margin: 22px 0;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        nav a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--sidebar-muted);
+            text-decoration: none;
+            padding: 7px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.2px;
+            transition: color 0.2s, background 0.2s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.2s;
+            flex-shrink: 0;
+        }
+
+        nav a.active {
+            color: var(--sidebar-text);
+        }
+
+        nav a.active::before {
+            opacity: 1;
+        }
+
+        nav a:hover {
+            color: var(--sidebar-text);
+        }
+
+        .sidebar-contact {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .contact-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: #333330;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .contact-value {
+            font-size: 11.5px;
+            color: var(--sidebar-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            word-break: break-all;
+        }
+
+        .contact-value:hover {
+            color: var(--sidebar-text);
+        }
+
+        .citizen-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: #333330;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .citizen-badge::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #2a4a1a;
+            flex-shrink: 0;
+        }
+
+        .resume-btn {
+            display: block;
+            margin-top: 16px;
+            padding: 10px 0;
+            background: var(--accent);
+            color: #0a0a0a;
+            text-align: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .resume-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* ── MAIN ──────────────────────────────────────────── */
+        main {
+            margin-left: var(--sidebar-w);
+            min-height: 100vh;
+        }
+
+        section {
+            padding: 96px 72px;
+            border-bottom: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #hero {
+            padding-top: 96px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ── HERO ──────────────────────────────────────────── */
+        .hero-eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: fadeUp 0.7s ease 0.4s both;
+        }
+
+        .hero-name {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(56px, 8vw, 96px);
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -4px;
+            line-height: 0.92;
+            margin-bottom: 28px;
+            animation: fadeUp 0.7s ease 0.5s both;
+        }
+
+        .hero-tagline {
+            font-size: 16px;
+            color: var(--body);
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 480px;
+            margin-bottom: 40px;
+            animation: fadeUp 0.7s ease 0.6s both;
+        }
+
+        .hero-tagline strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .company-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            animation: fadeUp 0.7s ease 0.75s both;
+        }
+
+        .company-pill {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 100px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .company-pill:hover {
+            border-color: var(--text);
+            color: var(--text);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── SECTION HEADERS ───────────────────────────────── */
+        .section-eyebrow {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 52px;
+        }
+
+        /* ── ABOUT ─────────────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .about-bio p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--body);
+            margin-bottom: 16px;
+        }
+
+        .about-bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-bio a {
+            color: var(--text);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .about-photo {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a18 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-photo::after {
+            content: 'JA';
+            font-family: 'Syne', sans-serif;
+            font-size: 80px;
+            font-weight: 800;
+            color: var(--accent);
+            opacity: 0.9;
+        }
+
+        .about-photo-corner {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: #3a3a38;
+            letter-spacing: 1px;
+        }
+
+        /* ── EXPERIENCE ────────────────────────────────────── */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exp-item {
+            padding: 36px 0;
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .exp-item:first-child {
+            padding-top: 0;
+        }
+
+        .exp-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .exp-company {
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .exp-role {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+            background: #0a0a0a;
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-bottom: 16px;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .exp-bullets li {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--body);
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .exp-bullets li::before {
+            content: '–';
+            position: absolute;
+            left: 0;
+            color: var(--muted);
+        }
+
+        .exp-bullets li strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .exp-meta {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .exp-date {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .exp-location {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        /* ── PROJECTS ──────────────────────────────────────── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.25s;
+            cursor: default;
+        }
+
+        .project-card:hover {
+            border-color: #aaa;
+            transform: translateY(-3px);
+        }
+
+        .project-img {
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img-ocamelot {
+            background: linear-gradient(135deg, #0d1f0d 0%, #1a3d1a 50%, #0a2a0a 100%);
+        }
+
+        .project-img-satellite {
+            background: linear-gradient(135deg, #050a1a 0%, #0a1a3d 50%, #051025 100%);
+        }
+
+        .project-img-video {
+            background: linear-gradient(135deg, #1a0a00 0%, #3d1a00 50%, #250a00 100%);
+        }
+
+        .project-img-aws {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3d 40%, #0a1a2a 100%);
+        }
+
+        .project-img-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            opacity: 0.25;
+            white-space: nowrap;
+            letter-spacing: -1px;
+            pointer-events: none;
+        }
+
+        .project-body {
+            padding: 20px 20px 22px;
+        }
+
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+        }
+
+        .project-desc {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--body);
+            margin-bottom: 14px;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 3px 7px;
+            border-radius: 3px;
+        }
+
+        .project-link {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 1px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .project-link:hover {
+            opacity: 0.5;
+        }
+
+        /* ── SKILLS ────────────────────────────────────────── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px 64px;
+        }
+
+        .skill-group-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skill-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .skill-row {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .skill-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .skill-name {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--text);
+            letter-spacing: 0.3px;
+        }
+
+        .skill-level {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .skill-bar-track {
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            width: 0;
+            transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        #skills.visible .skill-bar-fill {
+            width: var(--fill);
+        }
+
+        /* ── CONTACT ───────────────────────────────────────── */
+        #contact {
+            border-bottom: none;
+            text-align: center;
+            padding: 96px 72px 120px;
+        }
+
+        .contact-headline {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(40px, 5vw, 68px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .contact-sub {
+            font-size: 15px;
+            color: var(--body);
+            margin-bottom: 48px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            padding: 20px 32px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.2s, transform 0.2s;
+            min-width: 130px;
+        }
+
+        .contact-link:hover {
+            border-color: var(--text);
+            transform: translateY(-3px);
+        }
+
+        .contact-link-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .contact-link-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .contact-resume-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--text);
+            color: var(--bg);
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .contact-resume-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        /* ── MOBILE ────────────────────────────────────────── */
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 200;
+            background: var(--sidebar-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 18px;
+            height: 1.5px;
+            background: var(--sidebar-text);
+            transition: 0.3s;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+        }
+
+        @media (max-width: 800px) {
+            :root {
+                --sidebar-w: 0px;
+            }
+
+            #sidebar {
+                width: 260px;
+                transform: translateX(-100%);
+                animation: none;
+                z-index: 150;
+            }
+
+            #sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.open {
+                display: block;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            main {
+                margin-left: 0;
+            }
+
+            section {
+                padding: 64px 24px;
+            }
+
+            #hero {
+                padding: 80px 24px 64px;
+            }
+
+            #contact {
+                padding: 64px 24px 80px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-photo {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .exp-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .exp-meta {
+                text-align: left;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-link {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar">
+        <div class="sidebar-name">Joseph Abramov</div>
+        <div class="sidebar-title">Software Engineer</div>
+        <div class="sidebar-grad">Cornell CS · May 2026</div>
+
+        <div class="sidebar-divider"></div>
+
+        <nav id="sidebar-nav">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-contact">
+            <div class="contact-item">
+                <span class="contact-label">Email</span>
+                <a href="mailto:ja653@cornell.edu" class="contact-value">ja653@cornell.edu</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">GitHub</span>
+                <a href="https://github.com/jabramov1" target="_blank" class="contact-value">jabramov1</a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Phone</span>
+                <a href="tel:7188530921" class="contact-value">(718) 853-0921</a>
+            </div>
+
+            <div class="citizen-badge">US Citizen</div>
+
+            <a href="Joseph_Abramov_Resume.pdf" download class="resume-btn">↓ Download Resume</a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- HERO -->
+        <section id="hero" style="opacity:1;transform:none;">
+            <div class="hero-eyebrow">Cornell University · Computer Science · 3.78 GPA</div>
+            <div class="hero-name">Joseph<br>Abramov.</div>
+            <div class="hero-tagline">
+                SWE intern @ <strong>TikTok</strong>, <strong>AWS</strong>, <strong>Google</strong>.<br>
+                Building systems that ship at scale.
+            </div>
+            <div class="company-strip">
+                <span class="company-pill">TikTok</span>
+                <span class="company-pill">Amazon Web Services</span>
+                <span class="company-pill">Aerospace Adversary Lab</span>
+                <span class="company-pill">Google</span>
+                <span class="company-pill">Equitable Holdings</span>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="section-eyebrow">01 — About</div>
+            <div class="section-title">Who I am.</div>
+            <div class="about-grid">
+                <div class="about-bio">
+                    <p>I'm a senior at Cornell University studying Computer Science, graduating May 2026. I build
+                        backend systems, full-stack features, and ML pipelines — the kind of work that shows up in
+                        production and matters at scale.</p>
+                    <p>Over the past few years I've interned at TikTok shipping ad features that drove 70%+ revenue
+                        growth, built event-driven infrastructure at AWS processing 40+ TPS, and did early-career
+                        engineering with Google. I care about clean architecture, fast iteration, and code that doesn't
+                        need to be apologized for.</p>
+                    <p>Outside of industry, I co-authored a research paper on autonomous satellite evasion using
+                        multi-agent reinforcement learning — published on <a href="https://arxiv.org/abs/2409.17443"
+                            target="_blank">arXiv (2409.17443)</a>. I speak English, French, and Russian fluently.</p>
+                    <p>Currently looking for full-time software engineering roles starting <strong>May 2026</strong>.
+                    </p>
+                </div>
+                <div class="about-photo">
+                    <div class="about-photo-corner">ITHACA, NY</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <div class="section-eyebrow">02 — Experience</div>
+            <div class="section-title">Where I've shipped.</div>
+
+            <div class="exp-list">
+
+                <div class="exp-item">
+                    <div>
+                        <div class="exp-company">TikTok</div>
+                        <div class="exp-role">Software Engineering Intern</div>
+                        <ul class="exp-bullets">
+                            <li>Built MongoDB-based version control system for Search Ads keyword planner, enabling
+                                advertisers to compare, audit, and restore historical plan changes with full edit
+                                history across thousands of monthly edits — <strong>first time this existed</strong>.
+                            </li>
+                            <li>Shipped <strong>7+ full-stack image ad features</strong> using Vue + Go, increasing
+                                global search ads image revenue by over <strong>70%</strong> in the quarter while
+                                driving over <strong>100% growth</strong> in dual-format advertisers.</li>
+                            <li>Developed promotional coupon redemption feature for eligible image ad advertisers,
+                                boosting adoption of new ad formats.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="exp-date">Aug 2025 – Oct 2025</div>
+                        <div class="exp-location">Seattle, WA</div>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div>
+                        <div class="exp-company">Amazon Web Services</div>
+                        <div class="exp-role">Software Development Engineer Intern</div>
+                        <ul class="exp-bullets">
+                            <li>Designed and built end-to-end, event-driven email automation system on AWS using Lambda,
+                                EventBridge, and CloudFormation, processing <strong>40+ TPS</strong> during peak billing
+                                cycles.</li>
+                            <li>Replaced legacy notification system with scalable, JSON-configured solution — eliminated
+                                technical debt and reduced deployment time <strong>from weeks to hours</strong>.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="exp-date">May 2025 – Aug 2025</div>
+                        <div class="exp-location">Dallas, TX</div>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div>
+                        <div class="exp-company">The Aerospace Adversary Lab</div>
+                        <div class="exp-role">Software Engineering Intern</div>
+                        <ul class="exp-bullets">
+                            <li>Developed secure satellite communication systems integrating Ruby and Solidity smart
+                                contracts for Space Domain Awareness (SDA) transactions.</li>
+                            <li>Designed MARL framework using Stable Baselines 3, training satellites to evade
+                                adversarial agents using <strong>10 distinct policies</strong>.</li>
+                            <li>Co-authored research paper on autonomous satellite evasion strategies using RL — <a
+                                    href="https://arxiv.org/abs/2409.17443" target="_blank"
+                                    style="color:var(--text)">arXiv:2409.17443</a>.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="exp-date">May 2024 – Nov 2024</div>
+                        <div class="exp-location">Ithaca, NY</div>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div>
+                        <div class="exp-company">Google</div>
+                        <div class="exp-role">Software Engineer Mentee</div>
+                        <ul class="exp-bullets">
+                            <li>Built a real-time messaging and video calling web platform using WebRTC, Python,
+                                JavaScript, and Java, supporting <strong>10,000+ users</strong> with secure screen
+                                sharing.</li>
+                            <li>Designed secure room ID generation using Google Cloud infrastructure, reducing
+                                configuration time by <strong>25%</strong>.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="exp-date">Jun 2023 – Aug 2023</div>
+                        <div class="exp-location">New York, NY</div>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div>
+                        <div class="exp-company">Equitable Holdings</div>
+                        <div class="exp-role">Financial Applications Researcher & Advisor</div>
+                        <ul class="exp-bullets">
+                            <li>Built Python-based retirement savings model using linear programming to optimize asset
+                                allocation, incorporating stochastic methods for market uncertainty handling.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="exp-date">Sep 2023 – Dec 2023</div>
+                        <div class="exp-location">New York, NY</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="section-eyebrow">03 — Projects</div>
+            <div class="section-title">Things I've built.</div>
+
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-img project-img-satellite">
+                        <div class="project-img-label">arXiv</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Satellite Evasion w/ RL</div>
+                        <div class="project-desc">Co-authored research on autonomous satellite evasion strategies using
+                            multi-agent reinforcement learning. Published on arXiv.</div>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">PyTorch</span>
+                                <span class="tag">MARL</span>
+                                <span class="tag">SB3</span>
+                            </div>
+                            <a href="https://arxiv.org/abs/2409.17443" target="_blank" class="project-link">arXiv ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img project-img-ocamelot">
+                        <div class="project-img-label">OCamelot</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">OCamelot</div>
+                        <div class="project-desc">Stock analysis library in OCaml featuring CSV ingestion, moving
+                            average trend analysis, and modular trading strategy evaluation.</div>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">OCaml</span>
+                                <span class="tag">Finance</span>
+                                <span class="tag">FP</span>
+                            </div>
+                            <a href="https://github.com/jabramov1" target="_blank" class="project-link">GitHub ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img project-img-video">
+                        <div class="project-img-label">WebRTC</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">Real-Time Video Platform</div>
+                        <div class="project-desc">WebRTC-based messaging and video calling platform with secure room IDs
+                            and screen sharing, supporting 10,000+ concurrent users.</div>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">WebRTC</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">Java</span>
+                                <span class="tag">GCP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img project-img-aws">
+                        <div class="project-img-label">EventBridge</div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-title">AWS Email Automation</div>
+                        <div class="project-desc">Event-driven notification system using Lambda + EventBridge +
+                            CloudFormation. Replaced a legacy system and cut deployment from weeks to hours.</div>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">AWS Lambda</span>
+                                <span class="tag">EventBridge</span>
+                                <span class="tag">CloudFormation</span>
+                                <span class="tag">Go</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="section-eyebrow">04 — Skills</div>
+            <div class="section-title">What I work with.</div>
+
+            <div class="skills-grid">
+
+                <div>
+                    <div class="skill-group-title">Languages</div>
+                    <div class="skill-rows">
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">Python</span><span
+                                    class="skill-level">Expert</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">Java</span><span
+                                    class="skill-level">Expert</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">Go</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:78%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">JavaScript</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">OCaml</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:72%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">C++</span><span
+                                    class="skill-level">Familiar</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:55%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">SQL / Kotlin</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="skill-group-title">Infrastructure & Cloud</div>
+                    <div class="skill-rows">
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">AWS Lambda</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:82%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">EventBridge</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:78%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">CloudFormation</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">MongoDB</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:76%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">Google Cloud</span><span
+                                    class="skill-level">Familiar</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="skill-group-title">Frameworks</div>
+                    <div class="skill-rows">
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">Vue.js</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:76%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">React Native</span><span
+                                    class="skill-level">Familiar</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:60%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">WebRTC</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:74%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="skill-group-title">ML / AI</div>
+                    <div class="skill-rows">
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">PyTorch</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:78%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">Stable Baselines 3</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-label-row"><span class="skill-name">MARL</span><span
+                                    class="skill-level">Proficient</span></div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" style="--fill:72%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="section-eyebrow">05 — Contact</div>
+            <div class="contact-headline">Let's build<br>something.</div>
+            <div class="contact-sub">I'm looking for full-time software engineering roles starting May 2026. Let's talk.
+            </div>
+
+            <div class="contact-links">
+                <a href="mailto:ja653@cornell.edu" class="contact-link">
+                    <span class="contact-link-label">Email</span>
+                    <span class="contact-link-value">ja653@cornell.edu</span>
+                </a>
+                <a href="https://github.com/jabramov1" target="_blank" class="contact-link">
+                    <span class="contact-link-label">GitHub</span>
+                    <span class="contact-link-value">jabramov1</span>
+                </a>
+                <a href="tel:7188530921" class="contact-link">
+                    <span class="contact-link-label">Phone</span>
+                    <span class="contact-link-value">(718) 853-0921</span>
+                </a>
+            </div>
+
+            <a href="Joseph_Abramov_Resume.pdf" download class="contact-resume-btn">↓ Download Resume</a>
+        </section>
+
+    </main>
+
+    <script>
+        // ── Scroll spy ──────────────────────────────────────
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    navLinks.forEach(a => {
+                        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+                    });
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '-10% 0px -40% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+
+        // ── Mobile sidebar ──────────────────────────────────
+        const sidebar = document.getElementById('sidebar');
+        const hamburger = document.getElementById('hamburger');
+        const overlay = document.getElementById('overlay');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
