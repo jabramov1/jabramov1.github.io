@@ -476,6 +476,14 @@
             transform: translateY(-3px);
         }
 
+        .project-card-wide {
+            grid-column: 1 / -1;
+        }
+
+        .project-card-wide .project-desc {
+            max-width: 920px;
+        }
+
         .project-body {
             padding: 0;
         }
@@ -857,12 +865,54 @@
 
             <div class="projects-grid">
 
+                <div class="project-card project-card-wide">
+                    <div class="project-body">
+                        <div class="project-title">TikTok Search Ads Tooling</div>
+                        <div class="project-desc">Worked on internal tooling and image-ad features for TikTok's search
+                            ads product. My work sat between frontend product surfaces and backend ad systems: building
+                            UI flows, wiring them into service APIs, and helping make image-ad setup clearer for
+                            advertisers and operators. The project was tied to a 70%+ quarterly revenue increase, but
+                            the part I want to emphasize is the engineering work: taking a business-critical ads feature
+                            from requirements through implementation, review, and launch.</div>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">Vue.js</span>
+                                <span class="tag">Kotlin</span>
+                                <span class="tag">MongoDB</span>
+                                <span class="tag">Ads</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="project-card">
                     <div class="project-body">
-                        <div class="project-title">Satellite Evasion with RL</div>
-                        <div class="project-desc">Co-authored research on autonomous satellite evasion using multi-agent
-                            reinforcement learning. I worked on simulation experiments in Python with Stable Baselines3,
-                            comparing learned evasion policies against adversarial agents.</div>
+                        <div class="project-title">AWS Billing Notification Automation</div>
+                        <div class="project-desc">Helped build an event-driven email notification system for AWS billing
+                            workflows using Lambda, EventBridge, CloudFormation, and Go. The system replaced a slower
+                            manual process with configuration-driven notification changes, so teams could update billing
+                            messages without waiting on full deployment cycles. I worked on the infrastructure and
+                            backend pieces that handled billing-cycle traffic and made the workflow easier to operate.</div>
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">AWS Lambda</span>
+                                <span class="tag">EventBridge</span>
+                                <span class="tag">CloudFormation</span>
+                                <span class="tag">Go</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-body">
+                        <div class="project-title">Aerospace Adversary Lab</div>
+                        <div class="project-desc">Worked on satellite communication systems and reinforcement learning
+                            experiments for autonomous satellite evasion. The research models a cat-and-mouse orbital
+                            pursuit problem where adversarial spacecraft try to capture an evader, then compares learned
+                            evasion policies against benchmark planners. I contributed to simulation and training work
+                            around multi-agent RL, with a focus on how models behave when the adversary is actively
+                            adapting instead of following a fixed script.</div>
                         <div class="project-footer">
                             <div class="project-tags">
                                 <span class="tag">Python</span>
@@ -871,57 +921,6 @@
                                 <span class="tag">SB3</span>
                             </div>
                             <a href="https://arxiv.org/abs/2409.17443" target="_blank" class="project-link">arXiv</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-body">
-                        <div class="project-title">OCamelot</div>
-                        <div class="project-desc">Built an OCaml library for experimenting with stock indicators and
-                            simple trading strategies. It parses CSV price data, computes moving-average signals, and
-                            lets strategies plug into a shared evaluation interface.</div>
-                        <div class="project-footer">
-                            <div class="project-tags">
-                                <span class="tag">OCaml</span>
-                                <span class="tag">Finance</span>
-                                <span class="tag">FP</span>
-                            </div>
-                            <a href="https://github.com/jabramov1" target="_blank" class="project-link">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-body">
-                        <div class="project-title">Real-Time Video Platform</div>
-                        <div class="project-desc">Built a browser-based messaging and video calling app with WebRTC,
-                            screen sharing, and generated room IDs. I worked across the client and backend using
-                            JavaScript, Python, Java, and Google Cloud.</div>
-                        <div class="project-footer">
-                            <div class="project-tags">
-                                <span class="tag">WebRTC</span>
-                                <span class="tag">Python</span>
-                                <span class="tag">Java</span>
-                                <span class="tag">GCP</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-body">
-                        <div class="project-title">AWS Email Automation</div>
-                        <div class="project-desc">At AWS, I helped build an event-driven email notification system using
-                            Lambda, EventBridge, and CloudFormation. The system handled billing-cycle traffic and moved
-                            notification changes from manual updates to JSON-configured workflows.</div>
-                        <div class="project-footer">
-                            <div class="project-tags">
-                                <span class="tag">AWS Lambda</span>
-                                <span class="tag">EventBridge</span>
-                                <span class="tag">CloudFormation</span>
-                                <span class="tag">Go</span>
-                            </div>
                         </div>
                     </div>
                 </div>
