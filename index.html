@@ -395,10 +395,6 @@
             letter-spacing: 1px;
         }
 
-        .about-experience {
-            margin-top: 64px;
-        }
-
         /* ── EXPERIENCE ────────────────────────────────────── */
         .exp-list {
             display: flex;
@@ -846,10 +842,6 @@
                 display: none;
             }
 
-            .about-experience {
-                margin-top: 48px;
-            }
-
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -932,124 +924,26 @@
             </div>
         </section>
 
-        <!-- ABOUT + EXPERIENCE -->
+        <!-- ABOUT -->
         <section id="about">
             <div class="section-eyebrow">01 — About</div>
-            <div class="section-title">Who I am, where I've shipped.</div>
+            <div class="section-title">Who I am.</div>
             <div class="about-grid">
                 <div class="about-bio">
-                    <p>I'm a senior at Cornell studying Computer Science, graduating in May 2026. I've spent the last
-                        few years working across backend systems, full-stack product work, cloud infrastructure, and
-                        applied ML.</p>
-                    <p>At TikTok, I built search ads tools and shipped image ad features tied to a 70%+ quarterly
-                        revenue increase. At AWS, I worked on an event-driven email automation system using Lambda,
-                        EventBridge, and CloudFormation to handle 40+ TPS during peak billing cycles and make
-                        notification updates easier to ship.</p>
+                    <p>I'm a senior at Cornell studying Computer Science, graduating in May 2026. Most of my work has
+                        been in backend systems, full-stack product work, cloud infrastructure, and applied ML.</p>
+                    <p>At TikTok, I worked on search ads tooling and image ad features tied to a 70%+ quarterly revenue
+                        increase. At AWS, I helped build an event-driven email automation system with Lambda,
+                        EventBridge, and CloudFormation to handle 40+ TPS during peak billing cycles.</p>
                     <p>At the Aerospace Adversary Lab, I worked on satellite communication systems and reinforcement
-                        learning experiments, and co-authored a paper on autonomous satellite evasion. I like projects
-                        where the engineering details matter and the work has to hold up in real use.</p>
+                        learning experiments, and co-authored a paper on autonomous satellite evasion. Lately I've been
+                        reading the second edition of <em>Designing Data-Intensive Applications</em> and spending more
+                        time thinking about how reliable systems are designed, tested, and operated.</p>
                     <p>I'm looking for full-time SWE roles starting <strong>May 2026</strong>.</p>
                 </div>
                 <div class="about-photo">
                     <div class="about-photo-corner">ITHACA, NY</div>
                 </div>
-            </div>
-
-            <div class="about-experience exp-list">
-
-                <div class="exp-item">
-                    <div>
-                        <div class="exp-company">TikTok</div>
-                        <div class="exp-role">Software Engineering Intern</div>
-                        <ul class="exp-bullets">
-                            <li>Built MongoDB-based version control system for Search Ads keyword planner, enabling
-                                advertisers to compare, audit, and restore historical plan changes with full edit
-                                history across thousands of monthly edits — <strong>first time this existed</strong>.
-                            </li>
-                            <li>Shipped <strong>7+ full-stack image ad features</strong> using Vue + Go, increasing
-                                global search ads image revenue by over <strong>70%</strong> in the quarter while
-                                driving over <strong>100% growth</strong> in dual-format advertisers.</li>
-                            <li>Developed promotional coupon redemption feature for eligible image ad advertisers,
-                                boosting adoption of new ad formats.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-meta">
-                        <div class="exp-date">Aug 2025 – Oct 2025</div>
-                        <div class="exp-location">Seattle, WA</div>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div>
-                        <div class="exp-company">Amazon Web Services</div>
-                        <div class="exp-role">Software Development Engineer Intern</div>
-                        <ul class="exp-bullets">
-                            <li>Designed and built end-to-end, event-driven email automation system on AWS using Lambda,
-                                EventBridge, and CloudFormation, processing <strong>40+ TPS</strong> during peak billing
-                                cycles.</li>
-                            <li>Replaced legacy notification system with scalable, JSON-configured solution — eliminated
-                                technical debt and reduced deployment time <strong>from weeks to hours</strong>.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-meta">
-                        <div class="exp-date">May 2025 – Aug 2025</div>
-                        <div class="exp-location">Dallas, TX</div>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div>
-                        <div class="exp-company">The Aerospace Adversary Lab</div>
-                        <div class="exp-role">Software Engineering Intern</div>
-                        <ul class="exp-bullets">
-                            <li>Developed secure satellite communication systems integrating Ruby and Solidity smart
-                                contracts for Space Domain Awareness (SDA) transactions.</li>
-                            <li>Designed MARL framework using Stable Baselines 3, training satellites to evade
-                                adversarial agents using <strong>10 distinct policies</strong>.</li>
-                            <li>Co-authored research paper on autonomous satellite evasion strategies using RL — <a
-                                    href="https://arxiv.org/abs/2409.17443" target="_blank"
-                                    style="color:var(--text)">arXiv:2409.17443</a>.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-meta">
-                        <div class="exp-date">May 2024 – Nov 2024</div>
-                        <div class="exp-location">Ithaca, NY</div>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div>
-                        <div class="exp-company">Google</div>
-                        <div class="exp-role">Software Engineer Mentee</div>
-                        <ul class="exp-bullets">
-                            <li>Built a real-time messaging and video calling web platform using WebRTC, Python,
-                                JavaScript, and Java, supporting <strong>10,000+ users</strong> with secure screen
-                                sharing.</li>
-                            <li>Designed secure room ID generation using Google Cloud infrastructure, reducing
-                                configuration time by <strong>25%</strong>.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-meta">
-                        <div class="exp-date">Jun 2023 – Aug 2023</div>
-                        <div class="exp-location">New York, NY</div>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div>
-                        <div class="exp-company">Equitable Holdings</div>
-                        <div class="exp-role">Financial Applications Researcher & Advisor</div>
-                        <ul class="exp-bullets">
-                            <li>Built Python-based retirement savings model using linear programming to optimize asset
-                                allocation, incorporating stochastic methods for market uncertainty handling.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-meta">
-                        <div class="exp-date">Sep 2023 – Dec 2023</div>
-                        <div class="exp-location">New York, NY</div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
