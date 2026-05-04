@@ -548,7 +548,7 @@
         /* PROJECTS */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
             gap: 18px;
             max-width: 1120px;
         }
@@ -580,10 +580,6 @@
         .project-card-link:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 3px;
-        }
-
-        .project-card-wide {
-            grid-column: 1 / -1;
         }
 
         .project-body {
@@ -1113,7 +1109,7 @@
 
             <div class="projects-grid">
 
-                <div class="project-card project-card-wide">
+                <div class="project-card">
                     <div class="project-body">
                         <div class="project-kicker">Search Ads / Internship</div>
                         <div class="project-title">TikTok Search Ads Tooling</div>
