@@ -421,7 +421,10 @@
         section > .section-note,
         section > .projects-grid,
         section > .skills-note,
-        section > .skills-grid {
+        section > .skills-grid,
+        #contact > .section-eyebrow,
+        #contact > .contact-headline,
+        #contact > .contact-sub {
             width: 100%;
             max-width: 1120px;
             margin-left: auto;
@@ -641,6 +644,11 @@
             max-width: 760px;
         }
 
+        .project-summary strong {
+            color: var(--text);
+            font-weight: 650;
+        }
+
         .project-details {
             display: grid;
             gap: 12px;
@@ -835,7 +843,7 @@
         }
 
         .contact-resume-btn {
-            display: inline-block;
+            display: block;
             padding: 14px 36px;
             background: var(--accent);
             color: var(--bg);
@@ -846,6 +854,8 @@
             text-decoration: none;
             border-radius: 6px;
             transition: background 0.2s, transform 0.2s;
+            width: fit-content;
+            margin-left: max(0px, calc((100% - 1120px) / 2));
         }
 
         .contact-resume-btn:hover {
@@ -1129,18 +1139,20 @@
                         <div class="project-kicker">Search Ads / Internship</div>
                         <div class="project-title">TikTok Search Ads Tooling</div>
                         <div class="project-meta">TikTok · Software Engineering Intern · Aug 2025 - Oct 2025</div>
-                        <div class="project-summary">Built internal tooling and image-ad setup flows for TikTok search
-                            ads, bridging product UI and backend ad systems.</div>
+                        <div class="project-summary">At TikTok, I worked on the <strong>search ads setup flow</strong>
+                            advertisers use to launch <strong>image-based campaigns</strong>, mostly connecting product UI
+                            decisions to backend ad-system constraints.</div>
                         <div class="project-details">
                             <div class="project-detail">
                                 <div class="project-detail-label">Impact</div>
-                                <div class="project-detail-value">Contributed to a business-critical ads feature tied to
+                                <div class="project-detail-value">Supported a business-critical ads surface tied to
                                     <strong>70%+ quarterly revenue growth</strong>.</div>
                             </div>
                             <div class="project-detail">
                                 <div class="project-detail-label">Work</div>
-                                <div class="project-detail-value">Built UI flows, wired service APIs, and clarified
-                                    image-ad setup for advertisers and operators.</div>
+                                <div class="project-detail-value">Shipped <strong>Vue.js UI paths</strong>, connected
+                                    <strong>Kotlin service APIs</strong>, and handled MongoDB-backed setup data so operators
+                                    had a clearer flow to debug.</div>
                             </div>
                         </div>
                         <div class="project-footer">
@@ -1160,18 +1172,22 @@
                         <div class="project-kicker">Cloud Infrastructure / Internship</div>
                         <div class="project-title">AWS Billing Notification Automation</div>
                         <div class="project-meta">Amazon Web Services · SDE Intern · May 2025 - Aug 2025</div>
-                        <div class="project-summary">Helped build event-driven notification automation for AWS billing
-                            workflows using Lambda, EventBridge, CloudFormation, and Go.</div>
+                        <div class="project-summary">On the AWS billing team, I helped replace manual notification updates
+                            with an <strong>event-driven system</strong> that could be changed through configuration instead
+                            of one-off code edits.</div>
                         <div class="project-details">
                             <div class="project-detail">
                                 <div class="project-detail-label">Impact</div>
-                                <div class="project-detail-value">Replaced slower manual message updates with
-                                    configuration-driven notification changes.</div>
+                                <div class="project-detail-value">Moved repeat billing-message changes into
+                                    <strong>configuration-driven automation</strong> instead of slower manual update work.
+                                </div>
                             </div>
                             <div class="project-detail">
                                 <div class="project-detail-label">Work</div>
-                                <div class="project-detail-value">Worked on infrastructure and backend pieces handling
-                                    billing-cycle traffic and making the workflow easier to operate.</div>
+                                <div class="project-detail-value">Built backend and infrastructure pieces across
+                                    <strong>AWS Lambda</strong>, <strong>EventBridge</strong>,
+                                    <strong>CloudFormation</strong>, and <strong>Go</strong>, with attention to operational
+                                    failure modes.</div>
                             </div>
                         </div>
                         <div class="project-footer">
@@ -1192,18 +1208,20 @@
                         <div class="project-kicker">Published Research / arXiv</div>
                         <div class="project-title">Autonomous Satellite Evasion Research</div>
                         <div class="project-meta">Aerospace Adversary Lab · Software Engineering Intern · May 2024 - Nov 2024</div>
-                        <div class="project-summary">Contributed simulation and multi-agent reinforcement learning work
-                            for autonomous satellite-evasion research.</div>
+                        <div class="project-summary">For the Aerospace Adversary Lab, I built and tested simulation pieces
+                            for <strong>autonomous satellite evasion</strong>, then used <strong>multi-agent RL</strong>
+                            experiments to compare learned policies against planners.</div>
                         <div class="project-details">
                             <div class="project-detail">
                                 <div class="project-detail-label">Impact</div>
-                                <div class="project-detail-value">Co-authored published research comparing learned
-                                    evasion policies against benchmark planners in an orbital pursuit setting.</div>
+                                <div class="project-detail-value">Co-authored <strong>published research</strong> on
+                                    <strong>learned evasion policies</strong> in an orbital pursuit setting, with benchmark
+                                    comparisons for the paper.</div>
                             </div>
                             <div class="project-detail">
                                 <div class="project-detail-label">Work</div>
-                                <div class="project-detail-value">Worked on simulation, training experiments, and
-                                    adversarial behavior analysis for multi-agent RL.</div>
+                                <div class="project-detail-value">Worked in <strong>Python/PyTorch</strong> on simulation,
+                                    training runs, and adversarial behavior analysis.</div>
                             </div>
                         </div>
                         <div class="project-footer">
