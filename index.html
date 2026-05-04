@@ -248,6 +248,7 @@
             min-height: auto;
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
             gap: 34px;
             padding-top: 70px;
@@ -368,7 +369,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            max-width: 860px;
+            width: 100%;
+            max-width: 1120px;
         }
 
         .company-pill {
@@ -414,6 +416,18 @@
             margin-bottom: 16px;
         }
 
+        section > .section-eyebrow,
+        section > .section-title,
+        section > .section-note,
+        section > .projects-grid,
+        section > .skills-note,
+        section > .skills-grid {
+            width: 100%;
+            max-width: 1120px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .section-title {
             font-family: var(--font-sans);
             font-size: clamp(24px, 2.6vw, 34px);
@@ -435,6 +449,8 @@
         /* ABOUT */
         .about-grid {
             max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .about-bio p {
@@ -550,7 +566,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
             gap: 18px;
-            max-width: 1120px;
         }
 
         .project-card {
