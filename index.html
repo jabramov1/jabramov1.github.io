@@ -535,7 +535,7 @@
             flex-direction: column;
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 24px;
+            padding: 26px;
             min-height: 100%;
             color: inherit;
             text-decoration: none;
@@ -563,10 +563,6 @@
             grid-column: 1 / -1;
         }
 
-        .project-card-wide .project-desc {
-            max-width: 920px;
-        }
-
         .project-body {
             display: flex;
             flex: 1;
@@ -574,20 +570,63 @@
             padding: 0;
         }
 
+        .project-kicker {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
         .project-title {
             font-family: var(--font-sans);
-            font-size: 17px;
+            font-size: 19px;
             font-weight: 650;
             color: var(--text);
             letter-spacing: 0;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .project-desc {
-            font-size: 14px;
-            line-height: 1.6;
+        .project-summary {
+            font-size: 15px;
+            line-height: 1.55;
             color: var(--body);
             margin-bottom: 22px;
+            max-width: 760px;
+        }
+
+        .project-details {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .project-detail {
+            display: grid;
+            grid-template-columns: 72px minmax(0, 1fr);
+            gap: 16px;
+            align-items: start;
+        }
+
+        .project-detail-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-top: 2px;
+        }
+
+        .project-detail-value {
+            font-size: 14px;
+            line-height: 1.55;
+            color: var(--body);
+        }
+
+        .project-detail-value strong {
+            color: var(--text);
+            font-weight: 600;
         }
 
         .project-footer {
@@ -855,18 +894,37 @@
 
             .hero-actions {
                 display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-columns: 1fr;
                 gap: 10px;
+                max-width: 320px;
             }
 
             .hero-action {
                 min-width: 0;
+                width: 100%;
                 padding: 0 10px;
+            }
+
+            .hero-profile,
+            .company-strip,
+            .projects-grid,
+            .project-card {
+                max-width: 100%;
+                min-width: 0;
             }
 
             .profile-row {
                 grid-template-columns: 68px minmax(0, 1fr);
                 gap: 14px;
+            }
+
+            .profile-row strong,
+            .hero-name,
+            .hero-tagline,
+            .project-title,
+            .project-summary,
+            .project-detail-value {
+                overflow-wrap: anywhere;
             }
 
             #contact {
@@ -879,6 +937,16 @@
 
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .project-detail {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+
+            .project-footer {
+                align-items: flex-start;
+                flex-direction: column;
             }
 
             .skills-grid {
@@ -925,8 +993,8 @@
         <div class="sidebar-divider"></div>
 
         <nav id="sidebar-nav">
-            <a href="#about" class="nav-link">About</a>
             <a href="#projects" class="nav-link">Work</a>
+            <a href="#about" class="nav-link">About</a>
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
@@ -949,9 +1017,9 @@
                     <div class="hero-eyebrow">Cornell CS | May 2026</div>
                     <h1 class="hero-name">Joseph Abramov</h1>
                     <div class="hero-tagline">
-                        Software engineer focused on backend systems, infrastructure, and product tooling. Recent work
-                        spans search ads at <strong>TikTok</strong>, billing notification automation at
-                        <strong>AWS</strong>, and applied ML research for autonomous satellite evasion.
+                        Software engineer building backend systems, cloud infrastructure, and applied ML tools. Recent
+                        work includes search ads at <strong>TikTok</strong>, billing automation at
+                        <strong>AWS</strong>, and autonomous satellite-evasion research.
                     </div>
                     <div class="hero-actions">
                         <a href="#projects" class="hero-action">View Work</a>
@@ -982,43 +1050,31 @@
             </div>
         </section>
 
-        <!-- ABOUT -->
-        <section id="about">
-            <div class="section-eyebrow">01 / About</div>
-            <div class="section-title">Who I am.</div>
-            <div class="about-grid">
-                <div class="about-bio">
-                    <p>I'm a senior at Cornell studying Computer Science, graduating in May 2026. Most of my work has
-                        been in backend systems, product infrastructure, cloud services, and applied ML research.</p>
-                    <p>At TikTok, I worked on search ads tooling and image ad features. At AWS, I helped build an
-                        event-driven email notification system for billing-cycle traffic using Lambda, EventBridge, and
-                        CloudFormation.</p>
-                    <p>In the Aerospace Adversary Lab, I worked on satellite communication systems and reinforcement
-                        learning experiments, including a paper on autonomous satellite evasion. That work made me more
-                        interested in simulation, adversarial settings, and the gap between a model that works in
-                        training and one that behaves well under pressure.</p>
-                    <p>I'm looking for full-time SWE roles starting <strong>May 2026</strong>, especially backend,
-                        infrastructure, and systems work where correctness and maintainability matter.</p>
-                </div>
-            </div>
-        </section>
-
         <!-- PROJECTS -->
         <section id="projects">
-            <div class="section-eyebrow">02 / Selected Work</div>
+            <div class="section-eyebrow">01 / Selected Work</div>
             <div class="section-title">Selected work.</div>
 
             <div class="projects-grid">
 
                 <div class="project-card project-card-wide">
                     <div class="project-body">
+                        <div class="project-kicker">Search Ads / Internship</div>
                         <div class="project-title">TikTok Search Ads Tooling</div>
-                        <div class="project-desc">Worked on internal tooling and image-ad features for TikTok's search
-                            ads product. My work sat between frontend product surfaces and backend ad systems: building
-                            UI flows, wiring them into service APIs, and helping make image-ad setup clearer for
-                            advertisers and operators. The project was tied to a 70%+ quarterly revenue increase, but
-                            the part I want to emphasize is the engineering work: taking a business-critical ads feature
-                            from requirements through implementation, review, and launch.</div>
+                        <div class="project-summary">Built internal tooling and image-ad setup flows for TikTok search
+                            ads, bridging product UI and backend ad systems.</div>
+                        <div class="project-details">
+                            <div class="project-detail">
+                                <div class="project-detail-label">Impact</div>
+                                <div class="project-detail-value">Contributed to a business-critical ads feature tied to
+                                    <strong>70%+ quarterly revenue growth</strong>.</div>
+                            </div>
+                            <div class="project-detail">
+                                <div class="project-detail-label">Work</div>
+                                <div class="project-detail-value">Built UI flows, wired service APIs, and clarified
+                                    image-ad setup for advertisers and operators.</div>
+                            </div>
+                        </div>
                         <div class="project-footer">
                             <div class="project-tags">
                                 <span class="tag">Vue.js</span>
@@ -1033,12 +1089,22 @@
 
                 <div class="project-card">
                     <div class="project-body">
+                        <div class="project-kicker">Cloud Infrastructure / Internship</div>
                         <div class="project-title">AWS Billing Notification Automation</div>
-                        <div class="project-desc">Helped build an event-driven email notification system for AWS billing
-                            workflows using Lambda, EventBridge, CloudFormation, and Go. The system replaced a slower
-                            manual process with configuration-driven notification changes, so teams could update billing
-                            messages without waiting on full deployment cycles. I worked on the infrastructure and
-                            backend pieces that handled billing-cycle traffic and made the workflow easier to operate.</div>
+                        <div class="project-summary">Helped build event-driven notification automation for AWS billing
+                            workflows using Lambda, EventBridge, CloudFormation, and Go.</div>
+                        <div class="project-details">
+                            <div class="project-detail">
+                                <div class="project-detail-label">Impact</div>
+                                <div class="project-detail-value">Replaced slower manual message updates with
+                                    configuration-driven notification changes.</div>
+                            </div>
+                            <div class="project-detail">
+                                <div class="project-detail-label">Work</div>
+                                <div class="project-detail-value">Worked on infrastructure and backend pieces handling
+                                    billing-cycle traffic and making the workflow easier to operate.</div>
+                            </div>
+                        </div>
                         <div class="project-footer">
                             <div class="project-tags">
                                 <span class="tag">AWS Lambda</span>
@@ -1054,13 +1120,22 @@
                 <a class="project-card project-card-link" href="https://arxiv.org/abs/2409.17443" target="_blank"
                     rel="noopener noreferrer" aria-label="Open the Aerospace Adversary Lab arXiv paper">
                     <div class="project-body">
+                        <div class="project-kicker">Applied ML Research / arXiv</div>
                         <div class="project-title">Aerospace Adversary Lab</div>
-                        <div class="project-desc">Worked on satellite communication systems and reinforcement learning
-                            experiments for autonomous satellite evasion. The research models a cat-and-mouse orbital
-                            pursuit problem where adversarial spacecraft try to capture an evader, then compares learned
-                            evasion policies against benchmark planners. I contributed to simulation and training work
-                            around multi-agent RL, with a focus on how models behave when the adversary is actively
-                            adapting instead of following a fixed script.</div>
+                        <div class="project-summary">Contributed simulation and multi-agent reinforcement learning work
+                            for autonomous satellite-evasion research.</div>
+                        <div class="project-details">
+                            <div class="project-detail">
+                                <div class="project-detail-label">Impact</div>
+                                <div class="project-detail-value">Published research comparing learned evasion policies
+                                    against benchmark planners in an orbital pursuit setting.</div>
+                            </div>
+                            <div class="project-detail">
+                                <div class="project-detail-label">Work</div>
+                                <div class="project-detail-value">Worked on simulation, training experiments, and
+                                    adversarial behavior analysis for multi-agent RL.</div>
+                            </div>
+                        </div>
                         <div class="project-footer">
                             <div class="project-tags">
                                 <span class="tag">Python</span>
@@ -1073,6 +1148,22 @@
                     </div>
                 </a>
 
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="section-eyebrow">02 / About</div>
+            <div class="section-title">Who I am.</div>
+            <div class="about-grid">
+                <div class="about-bio">
+                    <p>I'm a senior at Cornell studying Computer Science, graduating in May 2026. I like backend,
+                        infrastructure, and systems work where correctness, operational clarity, and maintainability
+                        matter.</p>
+                    <p>My recent work has moved across ads tooling, AWS billing automation, and aerospace ML research.
+                        The common thread is building software around systems that need to behave reliably under real
+                        constraints.</p>
+                </div>
             </div>
         </section>
 
