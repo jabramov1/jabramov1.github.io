@@ -600,6 +600,10 @@
             outline-offset: 3px;
         }
 
+        .project-card-featured {
+            grid-column: 1 / -1;
+        }
+
         .project-body {
             display: flex;
             flex: 1;
@@ -651,15 +655,22 @@
 
         .project-details {
             display: grid;
-            gap: 12px;
+            gap: 14px;
             margin-bottom: 24px;
         }
 
         .project-detail {
             display: grid;
-            grid-template-columns: 72px minmax(0, 1fr);
-            gap: 16px;
+            grid-template-columns: 1fr;
+            gap: 5px;
             align-items: start;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-detail:first-child {
+            padding-top: 0;
+            border-top: none;
         }
 
         .project-detail-label {
@@ -1078,7 +1089,7 @@
         <div class="sidebar-divider"></div>
 
         <div class="sidebar-contact">
-            <div class="sidebar-contact-note">Contact details are in my resume PDF to keep them off the public page.</div>
+            <div class="sidebar-contact-note">Contact details are in my resume PDF.</div>
             <a href="Joseph_Abramov_Resume.pdf" download class="resume-btn">Resume + Contact</a>
         </div>
     </aside>
@@ -1134,27 +1145,26 @@
 
             <div class="projects-grid">
 
-                <div class="project-card">
+                <div class="project-card project-card-featured">
                     <div class="project-body">
                         <div class="project-kicker">Search Ads / Internship</div>
-                        <div class="project-title">TikTok Search Ads Version Control</div>
+                        <div class="project-title">TikTok Search Ads Planner Tools</div>
                         <div class="project-meta">TikTok · Software Engineering Intern · Aug 2025 - Oct 2025</div>
-                        <div class="project-summary">Owned a <strong>MongoDB-backed version-control system</strong> for
-                            TikTok Search Ads keyword planner, adding compare, audit, restore, and edit-history flows across
-                            thousands of monthly plan edits.</div>
+                        <div class="project-summary">Owned TikTok Search Ads planner tooling, including a
+                            <strong>MongoDB-backed version-control system</strong> for keyword plans and UI flows for
+                            image-ad setup and coupon redemption.</div>
                         <div class="project-details">
                             <div class="project-detail">
                                 <div class="project-detail-label">Impact</div>
-                                <div class="project-detail-value">Also shipped image-ad setup and coupon redemption UI that
-                                    directly incentivized adoption; the feature area saw <strong>70%+ quarterly revenue
-                                        growth</strong> and <strong>100%+ advertiser growth</strong> across search + image
-                                    formats.</div>
+                                <div class="project-detail-value">Delivered planner safety features and adoption-driving UI
+                                    for a business-critical ads area that saw <strong>70%+ quarterly revenue growth</strong>
+                                    and <strong>100%+ advertiser growth</strong> across search + image formats.</div>
                             </div>
                             <div class="project-detail">
                                 <div class="project-detail-label">Work</div>
                                 <div class="project-detail-value">Built frontend flows in <strong>Vue.js</strong>, integrated
-                                    <strong>Go</strong> backend APIs, and owned the <strong>MongoDB</strong> versioning model.
-                                </div>
+                                    <strong>Go</strong> backend APIs, and owned the <strong>MongoDB</strong> versioning model
+                                    behind compare, audit, restore, and edit-history workflows.</div>
                             </div>
                         </div>
                         <div class="project-footer">
