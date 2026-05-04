@@ -372,6 +372,9 @@
         }
 
         .company-pill {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 2px;
             font-family: var(--font-mono);
             font-size: 10px;
             letter-spacing: 0.7px;
@@ -382,6 +385,17 @@
             border-radius: 4px;
             background: var(--bg);
             transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+
+        .company-pill strong {
+            color: var(--text);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .company-pill span {
+            font-size: 9px;
         }
 
         .company-pill:hover {
@@ -408,6 +422,14 @@
             letter-spacing: 0;
             line-height: 1.08;
             margin-bottom: 42px;
+        }
+
+        .section-note {
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--body);
+            max-width: 620px;
+            margin: -26px 0 38px;
         }
 
         /* ABOUT */
@@ -586,6 +608,17 @@
             color: var(--text);
             letter-spacing: 0;
             margin-bottom: 10px;
+        }
+
+        .project-meta {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            line-height: 1.55;
+            letter-spacing: 0.7px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 14px;
+            max-width: 760px;
         }
 
         .project-summary {
@@ -918,10 +951,31 @@
                 gap: 14px;
             }
 
+            .company-strip {
+                gap: 6px;
+            }
+
+            .company-pill {
+                flex-direction: row;
+                align-items: baseline;
+                gap: 6px;
+                padding: 5px 9px;
+            }
+
+            .company-pill strong {
+                font-size: 9px;
+            }
+
+            .company-pill span {
+                font-size: 8px;
+            }
+
             .profile-row strong,
             .hero-name,
             .hero-tagline,
+            .company-pill,
             .project-title,
+            .project-meta,
             .project-summary,
             .project-detail-value {
                 overflow-wrap: anywhere;
@@ -1003,7 +1057,7 @@
 
         <div class="sidebar-contact">
             <div class="sidebar-contact-note">Contact details are in my resume PDF to keep them off the public page.</div>
-            <a href="Joseph_Abramov_Resume.pdf" download class="resume-btn">Download Resume</a>
+            <a href="Joseph_Abramov_Resume.pdf" download class="resume-btn">Resume + Contact</a>
         </div>
     </aside>
 
@@ -1023,7 +1077,7 @@
                     </div>
                     <div class="hero-actions">
                         <a href="#projects" class="hero-action">View Work</a>
-                        <a href="Joseph_Abramov_Resume.pdf" download class="hero-action">Resume PDF</a>
+                        <a href="Joseph_Abramov_Resume.pdf" download class="hero-action">Resume + Contact</a>
                     </div>
                 </div>
                 <div class="hero-profile" aria-label="Profile summary">
@@ -1042,11 +1096,11 @@
                 </div>
             </div>
             <div class="company-strip">
-                <span class="company-pill">TikTok</span>
-                <span class="company-pill">Amazon Web Services</span>
-                <span class="company-pill">Aerospace Adversary Lab</span>
-                <span class="company-pill">Google</span>
-                <span class="company-pill">Equitable Holdings</span>
+                <span class="company-pill"><strong>TikTok</strong><span>SWE intern</span></span>
+                <span class="company-pill"><strong>Amazon Web Services</strong><span>SDE intern</span></span>
+                <span class="company-pill"><strong>Aerospace Adversary Lab</strong><span>Research + SWE</span></span>
+                <span class="company-pill"><strong>Google</strong><span>SWE mentee</span></span>
+                <span class="company-pill"><strong>Equitable Holdings</strong><span>Research advisor</span></span>
             </div>
         </section>
 
@@ -1054,6 +1108,7 @@
         <section id="projects">
             <div class="section-eyebrow">01 / Selected Work</div>
             <div class="section-title">Selected work.</div>
+            <p class="section-note">Selected internships and research, organized for a fast recruiter scan.</p>
 
             <div class="projects-grid">
 
@@ -1061,6 +1116,7 @@
                     <div class="project-body">
                         <div class="project-kicker">Search Ads / Internship</div>
                         <div class="project-title">TikTok Search Ads Tooling</div>
+                        <div class="project-meta">TikTok · Software Engineering Intern · Aug 2025 - Oct 2025</div>
                         <div class="project-summary">Built internal tooling and image-ad setup flows for TikTok search
                             ads, bridging product UI and backend ad systems.</div>
                         <div class="project-details">
@@ -1091,6 +1147,7 @@
                     <div class="project-body">
                         <div class="project-kicker">Cloud Infrastructure / Internship</div>
                         <div class="project-title">AWS Billing Notification Automation</div>
+                        <div class="project-meta">Amazon Web Services · SDE Intern · May 2025 - Aug 2025</div>
                         <div class="project-summary">Helped build event-driven notification automation for AWS billing
                             workflows using Lambda, EventBridge, CloudFormation, and Go.</div>
                         <div class="project-details">
@@ -1120,15 +1177,16 @@
                 <a class="project-card project-card-link" href="https://arxiv.org/abs/2409.17443" target="_blank"
                     rel="noopener noreferrer" aria-label="Open the Aerospace Adversary Lab arXiv paper">
                     <div class="project-body">
-                        <div class="project-kicker">Applied ML Research / arXiv</div>
-                        <div class="project-title">Aerospace Adversary Lab</div>
+                        <div class="project-kicker">Published Research / arXiv</div>
+                        <div class="project-title">Autonomous Satellite Evasion Research</div>
+                        <div class="project-meta">Aerospace Adversary Lab · Software Engineering Intern · May 2024 - Nov 2024</div>
                         <div class="project-summary">Contributed simulation and multi-agent reinforcement learning work
                             for autonomous satellite-evasion research.</div>
                         <div class="project-details">
                             <div class="project-detail">
                                 <div class="project-detail-label">Impact</div>
-                                <div class="project-detail-value">Published research comparing learned evasion policies
-                                    against benchmark planners in an orbital pursuit setting.</div>
+                                <div class="project-detail-value">Co-authored published research comparing learned
+                                    evasion policies against benchmark planners in an orbital pursuit setting.</div>
                             </div>
                             <div class="project-detail">
                                 <div class="project-detail-label">Work</div>
@@ -1230,7 +1288,7 @@
             <div class="contact-sub">I keep direct contact details in the resume PDF instead of exposing them on the
                 public page.</div>
 
-            <a href="Joseph_Abramov_Resume.pdf" download class="contact-resume-btn">Download Resume</a>
+            <a href="Joseph_Abramov_Resume.pdf" download class="contact-resume-btn">Resume + Contact</a>
         </section>
 
     </main>
