@@ -419,12 +419,14 @@
         section > .section-eyebrow,
         section > .section-title,
         section > .section-note,
+        section > .exp-list,
         section > .projects-grid,
         section > .skills-note,
         section > .skills-grid,
         #contact > .section-eyebrow,
         #contact > .contact-headline,
-        #contact > .contact-sub {
+        #contact > .contact-sub,
+        #contact > .contact-actions {
             width: 100%;
             max-width: 1120px;
             margin-left: auto;
@@ -567,7 +569,7 @@
         /* PROJECTS */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 18px;
         }
 
@@ -598,10 +600,6 @@
         .project-card-link:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 3px;
-        }
-
-        .project-card-featured {
-            grid-column: 1 / -1;
         }
 
         .project-body {
@@ -807,9 +805,15 @@
         .contact-sub {
             font-size: 15px;
             color: var(--body);
-            margin-bottom: 48px;
+            margin-bottom: 28px;
             max-width: 420px;
             line-height: 1.6;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .contact-links {
@@ -854,7 +858,9 @@
         }
 
         .contact-resume-btn {
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 14px 36px;
             background: var(--accent);
             color: var(--bg);
@@ -866,12 +872,21 @@
             border-radius: 6px;
             transition: background 0.2s, transform 0.2s;
             width: fit-content;
-            margin-left: max(0px, calc((100% - 1120px) / 2));
         }
 
         .contact-resume-btn:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
+        }
+
+        .contact-secondary-btn {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border-strong);
+        }
+
+        .contact-secondary-btn:hover {
+            background: var(--panel);
         }
 
         /* MOBILE */
@@ -1081,6 +1096,7 @@
 
         <nav id="sidebar-nav">
             <a href="#projects" class="nav-link">Work</a>
+            <a href="#experience" class="nav-link">Experience</a>
             <a href="#about" class="nav-link">About</a>
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#contact" class="nav-link">Contact</a>
@@ -1145,7 +1161,7 @@
 
             <div class="projects-grid">
 
-                <div class="project-card project-card-featured">
+                <div class="project-card">
                     <div class="project-body">
                         <div class="project-kicker">Search Ads / Internship</div>
                         <div class="project-title">TikTok Search Ads Planner Tools</div>
@@ -1249,9 +1265,62 @@
             </div>
         </section>
 
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <div class="section-eyebrow">02 / Experience</div>
+            <div class="section-title">Recent roles.</div>
+
+            <div class="exp-list">
+                <div class="exp-item">
+                    <div>
+                        <div class="exp-company">TikTok</div>
+                        <div class="exp-role">Software Engineering Intern</div>
+                        <ul class="exp-bullets">
+                            <li>Owned planner tooling for Search Ads, including <strong>MongoDB-backed</strong> version-control workflows.</li>
+                            <li>Built product UI and backend integrations across <strong>Vue.js</strong>, <strong>Go</strong>, and MongoDB.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="exp-date">Aug 2025 - Oct 2025</div>
+                        <div class="exp-location">Search Ads</div>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div>
+                        <div class="exp-company">Amazon Web Services</div>
+                        <div class="exp-role">SDE Intern</div>
+                        <ul class="exp-bullets">
+                            <li>Built event-driven billing notification automation with <strong>Lambda</strong>, <strong>EventBridge</strong>, CloudFormation, and Go.</li>
+                            <li>Moved notification changes from manual updates to JSON configuration, reducing deployment time from <strong>weeks to hours</strong>.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="exp-date">May 2025 - Aug 2025</div>
+                        <div class="exp-location">Cloud Infrastructure</div>
+                    </div>
+                </div>
+
+                <div class="exp-item">
+                    <div>
+                        <div class="exp-company">Aerospace Adversary Lab</div>
+                        <div class="exp-role">Software Engineering Intern</div>
+                        <ul class="exp-bullets">
+                            <li>Implemented multi-agent RL training and evaluation for autonomous satellite evasion research.</li>
+                            <li>Contributed to published arXiv work comparing learned evasion policies against benchmark planners.</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="exp-date">May 2024 - Nov 2024</div>
+                        <div class="exp-location">Applied ML Research</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ABOUT -->
         <section id="about">
-            <div class="section-eyebrow">02 / About</div>
+            <div class="section-eyebrow">03 / About</div>
             <div class="section-title">Who I am.</div>
             <div class="about-grid">
                 <div class="about-bio">
@@ -1265,7 +1334,7 @@
 
         <!-- SKILLS -->
         <section id="skills">
-            <div class="section-eyebrow">03 / Skills</div>
+            <div class="section-eyebrow">04 / Skills</div>
             <div class="section-title">What I work with.</div>
 
             <p class="skills-note">I use Python, Java, Go, and JavaScript most often. My recent work has involved AWS
@@ -1321,12 +1390,15 @@
 
         <!-- CONTACT -->
         <section id="contact">
-            <div class="section-eyebrow">04 / Contact</div>
+            <div class="section-eyebrow">05 / Contact</div>
             <div class="contact-headline">Contact.</div>
-            <div class="contact-sub">My resume includes direct contact details. GitHub is linked above for code and
-                project history.</div>
+            <div class="contact-sub">My resume includes direct contact details. GitHub has code and project history.</div>
 
-            <a href="Joseph_Abramov_Resume.pdf" download class="contact-resume-btn">Resume + Contact</a>
+            <div class="contact-actions">
+                <a href="Joseph_Abramov_Resume.pdf" download class="contact-resume-btn">Resume + Contact</a>
+                <a href="https://github.com/jabramov1" target="_blank" rel="noopener noreferrer"
+                    class="contact-resume-btn contact-secondary-btn">GitHub</a>
+            </div>
         </section>
 
     </main>
