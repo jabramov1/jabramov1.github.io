@@ -365,47 +365,6 @@
             overflow-wrap: break-word;
         }
 
-        .company-strip {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            width: 100%;
-            max-width: 1120px;
-        }
-
-        .company-pill {
-            display: inline-flex;
-            flex-direction: column;
-            gap: 2px;
-            font-family: var(--font-mono);
-            font-size: 10px;
-            letter-spacing: 0.7px;
-            text-transform: uppercase;
-            color: var(--muted);
-            border: 1px solid var(--border);
-            padding: 5px 12px;
-            border-radius: 4px;
-            background: var(--bg);
-            transition: border-color 0.2s, color 0.2s, background 0.2s;
-        }
-
-        .company-pill strong {
-            color: var(--text);
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .company-pill span {
-            font-size: 9px;
-        }
-
-        .company-pill:hover {
-            border-color: var(--border-strong);
-            color: var(--text);
-            background: var(--panel);
-        }
-
         /* SECTION HEADERS */
         .section-eyebrow {
             font-family: var(--font-mono);
@@ -449,30 +408,6 @@
             color: var(--body);
             max-width: 620px;
             margin: -26px 0 38px;
-        }
-
-        /* ABOUT */
-        .about-grid {
-            max-width: 780px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .about-bio p {
-            font-size: 16px;
-            line-height: 1.75;
-            color: var(--body);
-            margin-bottom: 16px;
-        }
-
-        .about-bio p:last-child {
-            margin-bottom: 0;
-        }
-
-        .about-bio a {
-            color: var(--text);
-            text-decoration: underline;
-            text-underline-offset: 3px;
         }
 
         /* EXPERIENCE */
@@ -1023,7 +958,6 @@
             }
 
             .hero-profile,
-            .company-strip,
             .projects-grid,
             .project-card {
                 max-width: 100%;
@@ -1035,29 +969,9 @@
                 gap: 14px;
             }
 
-            .company-strip {
-                gap: 6px;
-            }
-
-            .company-pill {
-                flex-direction: row;
-                align-items: baseline;
-                gap: 6px;
-                padding: 5px 9px;
-            }
-
-            .company-pill strong {
-                font-size: 9px;
-            }
-
-            .company-pill span {
-                font-size: 8px;
-            }
-
             .profile-row strong,
             .hero-name,
             .hero-tagline,
-            .company-pill,
             .project-title,
             .project-meta,
             .project-summary,
@@ -1067,10 +981,6 @@
 
             #contact {
                 padding: 64px 24px 80px;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
             }
 
             .projects-grid {
@@ -1133,7 +1043,6 @@
         <nav id="sidebar-nav">
             <a href="#projects" class="nav-link">Work</a>
             <a href="#experience" class="nav-link">Experience</a>
-            <a href="#about" class="nav-link">About</a>
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
@@ -1178,14 +1087,9 @@
                     </div>
                     <div class="profile-row">
                         <span>Seeking</span>
-                        <strong>New-grad SWE, backend, and ML engineering roles</strong>
+                        <strong>ML infrastructure and backend SWE roles</strong>
                     </div>
                 </div>
-            </div>
-            <div class="company-strip">
-                <span class="company-pill"><strong>TikTok</strong><span>SWE intern</span></span>
-                <span class="company-pill"><strong>Amazon Web Services</strong><span>SDE intern</span></span>
-                <span class="company-pill"><strong>Aerospace Adversary Lab</strong><span>Research + SWE</span></span>
             </div>
         </section>
 
@@ -1238,8 +1142,8 @@
                         <div class="project-title">AWS Billing Notification Automation</div>
                         <div class="project-meta">Amazon Web Services · SDE Intern · May 2025 - Aug 2025</div>
                         <div class="project-summary">Designed and built an end-to-end <strong>event-driven email automation
-                                system</strong> for AWS billing notifications using Lambda, EventBridge, CloudFormation, and
-                            Go.</div>
+                                system</strong> for AWS billing notifications using Lambda, EventBridge, CloudFormation,
+                            and JSON-based configuration.</div>
                         <div class="project-details">
                             <div class="project-detail">
                                 <div class="project-detail-label">Impact</div>
@@ -1250,8 +1154,8 @@
                             <div class="project-detail">
                                 <div class="project-detail-label">Work</div>
                                 <div class="project-detail-value">Owned architecture and implementation across
-                                    <strong>AWS Lambda</strong>, <strong>EventBridge</strong>,
-                                    <strong>CloudFormation</strong>, and <strong>Go</strong>.</div>
+                                    <strong>AWS Lambda</strong>, <strong>EventBridge</strong>, and
+                                    <strong>CloudFormation</strong>.</div>
                             </div>
                         </div>
                         <div class="project-footer">
@@ -1259,7 +1163,6 @@
                                 <span class="tag">AWS Lambda</span>
                                 <span class="tag">EventBridge</span>
                                 <span class="tag">CloudFormation</span>
-                                <span class="tag">Go</span>
                             </div>
                             <span class="project-link">Architecture walkthrough</span>
                         </div>
@@ -1407,23 +1310,9 @@
             </div>
         </section>
 
-        <!-- ABOUT -->
-        <section id="about">
-            <div class="section-eyebrow">03 / About</div>
-            <div class="section-title">Who I am.</div>
-            <div class="about-grid">
-                <div class="about-bio">
-                    <p>I'm a senior at Cornell studying Computer Science, graduating in May 2026. I build backend,
-                        infrastructure, and ML-facing systems where reliability, ownership, and clear interfaces matter.</p>
-                    <p>My recent work spans ads tooling at TikTok, billing automation at AWS, and published aerospace ML
-                        research. I care most about systems that need to work under real operational constraints.</p>
-                </div>
-            </div>
-        </section>
-
         <!-- SKILLS -->
         <section id="skills">
-            <div class="section-eyebrow">04 / Skills</div>
+            <div class="section-eyebrow">03 / Skills</div>
             <div class="section-title">What I work with.</div>
 
             <p class="skills-note">I use Python, Java, Go, and JavaScript most often. My recent work has involved AWS
@@ -1479,7 +1368,7 @@
 
         <!-- CONTACT -->
         <section id="contact">
-            <div class="section-eyebrow">05 / Contact</div>
+            <div class="section-eyebrow">04 / Contact</div>
             <div class="contact-headline">Contact.</div>
             <div class="contact-sub">My resume includes direct contact details. GitHub has code and project history.</div>
 
