@@ -602,6 +602,14 @@
             outline-offset: 3px;
         }
 
+        .project-card-wide {
+            grid-column: 1 / -1;
+        }
+
+        .audio-project-card {
+            background: var(--panel);
+        }
+
         .project-body {
             display: flex;
             flex: 1;
@@ -649,6 +657,34 @@
         .project-summary strong {
             color: var(--text);
             font-weight: 650;
+        }
+
+        .project-audio {
+            width: 100%;
+            margin: 6px 0 18px;
+        }
+
+        .audio-transcript {
+            border-top: 1px solid var(--border);
+            padding-top: 14px;
+            margin-bottom: 22px;
+        }
+
+        .audio-transcript summary {
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .audio-transcript p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--body);
+            max-width: 820px;
         }
 
         .project-details {
@@ -1261,6 +1297,57 @@
                         </div>
                     </div>
                 </a>
+
+                <div class="project-card project-card-wide audio-project-card">
+                    <div class="project-body">
+                        <div class="project-kicker">Aural Multimodal Content / Research Explanation</div>
+                        <div class="project-title">Audio Explanation: Reinforcement Learning for Satellite Evasion</div>
+                        <div class="project-summary">
+                            This short audio clip explains the motivation, reinforcement learning framework, and
+                            real-world relevance of my Aerospace Adversary Lab research in a more accessible way than a
+                            technical paper description.
+                        </div>
+
+                        <audio class="project-audio" controls preload="metadata">
+                            <source src="assets/audio/satellite-rl-explanation.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+
+                        <details class="audio-transcript">
+                            <summary>Transcript</summary>
+                            <p>
+                                This is a research paper I co-authored about teaching satellites to evade attackers
+                                using AI, published on arXiv in September 2024. The problem we're solving is that as
+                                space gets more contested, satellites need to be able to dodge adversarial spacecraft in
+                                real time. Existing systems relied on pre-planned orbital maneuvers. These completely
+                                break down when other satellites are actively hunting you in close range. We modeled this
+                                as a cat-and-mouse game, literally: two attacker satellites chasing a single satellite, a
+                                single evader. The challenge was training the evader to outmaneuver attackers it had
+                                never encountered before. Our approach was called DARL, Diverse Adversarial
+                                Reinforcement Learning. It worked in two stages. The goal was to have the satellite be
+                                able to evade a varied, diverse set of policies. First, we trained the attacker
+                                satellites to develop as many different hunting strategies as possible across 10
+                                different behaviors. Then we exposed the evader to all of them so it learns to escape
+                                anything thrown at it. The AI framework was built using Stable-Baselines3. The result was
+                                an evader that significantly outperforms existing satellite navigation benchmarks because
+                                it has been stress-tested against the widest possible range of attackers. This is the kind
+                                of approach that made me realize how far AI can go when the stakes are super real and
+                                super costly.
+                            </p>
+                        </details>
+
+                        <div class="project-footer">
+                            <div class="project-tags">
+                                <span class="tag">Audio</span>
+                                <span class="tag">Reinforcement Learning</span>
+                                <span class="tag">Satellite Evasion</span>
+                                <span class="tag">Accessibility</span>
+                            </div>
+                            <a class="project-link" href="https://arxiv.org/abs/2409.17443" target="_blank"
+                                rel="noopener noreferrer">arXiv</a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </section>
