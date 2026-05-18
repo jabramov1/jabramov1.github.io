@@ -60,7 +60,6 @@
         }
 
         .back-link,
-        .deck-link,
         .eyebrow,
         .label {
             color: var(--muted);
@@ -70,25 +69,39 @@
             text-transform: uppercase;
         }
 
-        .back-link,
-        .deck-link {
+        .back-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             text-decoration: none;
         }
 
-        .slide-link {
+        .deck-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .deck-row p {
+            color: var(--body);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .deck-row a {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
+            gap: 8px;
             color: var(--aws-dark);
             font-size: 14px;
             font-weight: 680;
-            margin-top: 12px;
             text-decoration-color: var(--aws);
             text-decoration-thickness: 1px;
             text-underline-offset: 4px;
+            white-space: nowrap;
         }
 
         .back-link::before {
@@ -96,12 +109,7 @@
             color: var(--aws);
         }
 
-        .deck-link::after {
-            content: '->';
-            color: var(--aws);
-        }
-
-        .slide-link::after {
+        .deck-row a::after {
             content: '->';
             color: var(--aws);
             font-family: var(--font-mono);
@@ -114,7 +122,7 @@
             grid-template-columns: minmax(0, 0.85fr) minmax(360px, 1.15fr);
             gap: 36px;
             align-items: center;
-            padding-bottom: 36px;
+            padding-bottom: 34px;
             border-bottom: 1px solid var(--line);
         }
 
@@ -299,6 +307,11 @@
                 flex-direction: column;
             }
 
+            .deck-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
             h1 {
                 font-size: 31px;
             }
@@ -333,8 +346,6 @@
     <main class="page">
         <nav class="topbar" aria-label="Project navigation">
             <a class="back-link" href="index.html#projects">Back to portfolio</a>
-            <a class="deck-link" href="assets/aws-notification-walkthrough.pdf" target="_blank"
-                rel="noopener noreferrer">View slide deck</a>
         </nav>
 
         <header class="hero">
@@ -367,17 +378,21 @@
             </figure>
         </header>
 
+        <div class="deck-row">
+            <p>Want the fuller architecture walkthrough?</p>
+            <a href="assets/aws-notification-walkthrough.pdf" target="_blank" rel="noopener noreferrer">View slide deck</a>
+        </div>
+
         <section class="section" aria-labelledby="problem-title">
             <div>
                 <span class="label">Problem</span>
-                <a class="slide-link" href="assets/aws-notification-walkthrough.pdf" target="_blank"
-                    rel="noopener noreferrer">View slide deck</a>
                 <h2 id="problem-title">Make change safe.</h2>
             </div>
             <p class="copy">
                 Transfer Billing needed reliable customer emails for state changes, reminders, and error conditions.
                 The challenge was not sending one email; it was adding new email types without duplicating logic or
-                creating inconsistent behavior.
+                creating inconsistent behavior. I also learned how much production reliability depends on small pieces
+                like DLQs, early invalid-event routing, and idempotency.
             </p>
         </section>
 
