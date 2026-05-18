@@ -378,7 +378,6 @@
         section > .section-eyebrow,
         section > .section-title,
         section > .section-note,
-        section > .exp-list,
         section > .projects-grid,
         section > .skills-note,
         section > .skills-grid,
@@ -408,97 +407,6 @@
             color: var(--body);
             max-width: 620px;
             margin: -26px 0 38px;
-        }
-
-        /* EXPERIENCE */
-        .exp-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .exp-item {
-            padding: 36px 0;
-            border-bottom: 1px solid var(--border);
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 24px;
-            align-items: start;
-        }
-
-        .exp-item:first-child {
-            padding-top: 0;
-        }
-
-        .exp-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .exp-company {
-            font-family: var(--font-sans);
-            font-size: 20px;
-            font-weight: 650;
-            color: var(--text);
-            letter-spacing: -0.3px;
-            margin-bottom: 4px;
-        }
-
-        .exp-role {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--accent);
-            letter-spacing: 0.5px;
-            background: var(--accent-soft);
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 3px;
-            margin-bottom: 16px;
-        }
-
-        .exp-bullets {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .exp-bullets li {
-            font-size: 14px;
-            line-height: 1.65;
-            color: var(--body);
-            padding-left: 16px;
-            position: relative;
-        }
-
-        .exp-bullets li::before {
-            content: '-';
-            position: absolute;
-            left: 0;
-            color: var(--muted);
-        }
-
-        .exp-bullets li strong {
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        .exp-meta {
-            text-align: right;
-            flex-shrink: 0;
-        }
-
-        .exp-date {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--muted);
-            letter-spacing: 0.3px;
-            white-space: nowrap;
-        }
-
-        .exp-location {
-            font-size: 12px;
-            color: var(--muted);
-            margin-top: 3px;
         }
 
         /* PROJECTS */
@@ -1071,15 +979,6 @@
                 gap: 36px;
             }
 
-            .exp-item {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-
-            .exp-meta {
-                text-align: left;
-            }
-
             .contact-links {
                 flex-direction: column;
                 align-items: center;
@@ -1111,7 +1010,6 @@
 
         <nav id="sidebar-nav">
             <a href="#projects" class="nav-link">Work</a>
-            <a href="#experience" class="nav-link">Experience</a>
             <a href="#skills" class="nav-link">Skills</a>
             <a href="#contact" class="nav-link">Contact</a>
         </nav>
@@ -1333,62 +1231,9 @@
             </div>
         </section>
 
-        <!-- EXPERIENCE -->
-        <section id="experience">
-            <div class="section-eyebrow">02 / Experience</div>
-            <div class="section-title">Recent roles.</div>
-
-            <div class="exp-list">
-                <div class="exp-item">
-                    <div>
-                        <div class="exp-company">TikTok</div>
-                        <div class="exp-role">Software Engineering Intern</div>
-                        <ul class="exp-bullets">
-                            <li>Owned planner tooling for Search Ads, including <strong>MongoDB-backed</strong> version-control workflows.</li>
-                            <li>Built product UI and backend integrations across <strong>Vue.js</strong>, <strong>Go</strong>, and MongoDB.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-meta">
-                        <div class="exp-date">Aug 2025 - Oct 2025</div>
-                        <div class="exp-location">Search Ads</div>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div>
-                        <div class="exp-company">Amazon Web Services</div>
-                        <div class="exp-role">SDE Intern</div>
-                        <ul class="exp-bullets">
-                            <li>Built event-driven billing notification automation with <strong>Lambda</strong>, <strong>EventBridge</strong>, CloudFormation, and Go.</li>
-                            <li>Moved notification changes from manual updates to JSON configuration, reducing deployment time from <strong>weeks to hours</strong>.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-meta">
-                        <div class="exp-date">May 2025 - Aug 2025</div>
-                        <div class="exp-location">Cloud Infrastructure</div>
-                    </div>
-                </div>
-
-                <div class="exp-item">
-                    <div>
-                        <div class="exp-company">Aerospace Adversary Lab</div>
-                        <div class="exp-role">Software Engineering Intern</div>
-                        <ul class="exp-bullets">
-                            <li>Implemented multi-agent RL training and evaluation for autonomous satellite evasion research.</li>
-                            <li>Contributed to published arXiv work comparing learned evasion policies against benchmark planners.</li>
-                        </ul>
-                    </div>
-                    <div class="exp-meta">
-                        <div class="exp-date">May 2024 - Nov 2024</div>
-                        <div class="exp-location">Applied ML Research</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- SKILLS -->
         <section id="skills">
-            <div class="section-eyebrow">03 / Skills</div>
+            <div class="section-eyebrow">02 / Skills</div>
             <div class="section-title">What I work with.</div>
 
             <p class="skills-note">I use Python, Java, Go, and JavaScript most often. My recent work has involved AWS
@@ -1444,7 +1289,7 @@
 
         <!-- CONTACT -->
         <section id="contact">
-            <div class="section-eyebrow">04 / Contact</div>
+            <div class="section-eyebrow">03 / Contact</div>
             <div class="contact-headline">Contact.</div>
             <div class="contact-sub">My resume includes direct contact details. GitHub has code and project history.</div>
 
