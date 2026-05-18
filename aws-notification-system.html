@@ -12,21 +12,16 @@
         rel="stylesheet">
     <style>
         :root {
-            --bg: #fbfbf8;
-            --band: #f2f2ee;
+            --bg: #fafafa;
             --panel: #ffffff;
-            --text: #141412;
-            --body: #484842;
-            --muted: #85857c;
-            --accent: #586b45;
-            --accent-soft: #e7eddf;
-            --blue: #536e8a;
-            --blue-soft: #e7edf2;
-            --amber: #9b6632;
-            --amber-soft: #f1e6d8;
-            --border: #e4e4dc;
-            --border-strong: #c9c9bf;
-            --shadow: 0 24px 60px rgba(42, 42, 35, 0.08);
+            --text: #111827;
+            --body: #424a57;
+            --muted: #6b7280;
+            --line: #e5e7eb;
+            --line-strong: #cfd4dc;
+            --aws: #ff9900;
+            --aws-dark: #232f3e;
+            --soft: #f5f6f8;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
         }
@@ -57,9 +52,9 @@
         }
 
         .page {
-            width: min(1120px, calc(100% - 40px));
+            width: min(960px, calc(100% - 40px));
             margin: 0 auto;
-            padding: 34px 0 64px;
+            padding: 28px 0 72px;
         }
 
         .topbar {
@@ -67,7 +62,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            margin-bottom: 72px;
+            margin-bottom: 48px;
         }
 
         .back-link,
@@ -78,7 +73,7 @@
             color: var(--muted);
             font-family: var(--font-mono);
             font-size: 11px;
-            letter-spacing: 0.7px;
+            letter-spacing: 0.6px;
             text-decoration: none;
             text-transform: uppercase;
             transition: color 0.2s;
@@ -91,34 +86,32 @@
 
         .back-link::before {
             content: '<-';
-            color: var(--accent);
+            color: var(--aws);
         }
 
         .quiet-link::after {
             content: '->';
-            color: var(--accent);
+            color: var(--aws);
         }
 
         .hero {
             display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-            gap: 56px;
-            align-items: end;
-            padding-bottom: 54px;
-            border-bottom: 1px solid var(--border);
+            grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+            gap: 42px;
+            align-items: start;
+            padding-bottom: 46px;
+            border-bottom: 1px solid var(--line);
         }
 
         .eyebrow,
         .section-eyebrow,
-        .metric-label,
         .flow-kicker,
-        .node-kicker,
         .result-label,
         .decision-kicker {
             color: var(--muted);
             font-family: var(--font-mono);
             font-size: 10px;
-            letter-spacing: 1.3px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
@@ -127,85 +120,59 @@
         }
 
         h1 {
-            max-width: 760px;
+            max-width: 720px;
             color: var(--text);
-            font-size: 82px;
-            font-weight: 650;
-            line-height: 0.96;
-            margin-bottom: 24px;
-            overflow-wrap: anywhere;
+            font-size: 56px;
+            font-weight: 680;
+            letter-spacing: 0;
+            line-height: 1.02;
+            margin-bottom: 20px;
         }
 
         .lead {
             max-width: 700px;
             color: var(--body);
-            font-size: 22px;
-            line-height: 1.5;
+            font-size: 18px;
+            line-height: 1.65;
         }
 
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 32px;
+            margin-top: 28px;
         }
 
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 42px;
-            border: 1px solid var(--text);
-            border-radius: 6px;
-            background: var(--text);
+            min-height: 40px;
+            border: 1px solid var(--aws-dark);
+            border-radius: 4px;
+            background: var(--aws-dark);
             color: var(--bg);
             font-size: 13px;
-            font-weight: 650;
+            font-weight: 680;
             text-decoration: none;
             padding: 0 16px;
-            transition: opacity 0.2s, transform 0.2s, background 0.2s, color 0.2s;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
         }
 
         .button.secondary {
             background: transparent;
-            color: var(--text);
+            color: var(--aws-dark);
         }
 
         .button:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-
-        .hero-panel {
-            display: grid;
-            gap: 12px;
-        }
-
-        .metric-card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.72);
-            padding: 18px;
-        }
-
-        .metric-value {
-            color: var(--text);
-            font-size: 28px;
-            font-weight: 650;
-            line-height: 1;
-            margin-top: 8px;
-        }
-
-        .metric-copy {
-            color: var(--body);
-            font-size: 14px;
-            line-height: 1.55;
-            margin-top: 8px;
+            border-color: var(--aws);
+            background: var(--aws);
+            color: #111827;
         }
 
         .section {
-            padding: 66px 0;
-            border-bottom: 1px solid var(--border);
+            padding: 52px 0;
+            border-bottom: 1px solid var(--line);
         }
 
         .section:last-of-type {
@@ -214,19 +181,18 @@
 
         .section-header {
             display: grid;
-            grid-template-columns: minmax(0, 0.75fr) minmax(280px, 1fr);
-            gap: 44px;
+            grid-template-columns: minmax(0, 0.65fr) minmax(280px, 1fr);
+            gap: 38px;
             align-items: start;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
         }
 
         .section-title {
             color: var(--text);
-            font-size: 40px;
-            font-weight: 650;
-            line-height: 1.08;
+            font-size: 30px;
+            font-weight: 680;
+            line-height: 1.15;
             margin-top: 12px;
-            overflow-wrap: anywhere;
         }
 
         .section-copy {
@@ -235,326 +201,233 @@
             line-height: 1.7;
         }
 
-        .system-map {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background:
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px),
-                var(--panel);
-            background-size: 32px 32px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
+        .fact-list {
+            display: grid;
+            gap: 18px;
+            border-top: 1px solid var(--line);
+            padding-top: 18px;
         }
 
-        .map-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(251, 251, 248, 0.9);
-            padding: 16px 18px;
-        }
-
-        .map-title {
-            color: var(--text);
-            font-size: 14px;
-            font-weight: 650;
-        }
-
-        .map-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .legend-item {
-            display: inline-flex;
-            align-items: center;
+        .fact-item {
+            display: grid;
             gap: 6px;
+        }
+
+        .fact-label {
             color: var(--muted);
             font-family: var(--font-mono);
             font-size: 10px;
-            letter-spacing: 0.4px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        .legend-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
+        .fact-value {
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 680;
+            line-height: 1.2;
         }
 
-        .legend-dot.blue {
-            background: var(--blue);
+        .fact-copy,
+        .card-copy,
+        .result-copy,
+        .deck-content p {
+            color: var(--body);
+            font-size: 14px;
+            line-height: 1.65;
         }
 
-        .legend-dot.amber {
-            background: var(--amber);
-        }
-
-        .flow-grid {
+        .plain-list {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 14px;
-            padding: 24px;
+            list-style: none;
+        }
+
+        .plain-list li {
+            display: grid;
+            grid-template-columns: 20px minmax(0, 1fr);
+            gap: 12px;
+            color: var(--body);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .plain-list li::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--aws);
+            margin-top: 10px;
+        }
+
+        .architecture-panel,
+        .deck-card {
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--panel);
+            overflow: hidden;
+        }
+
+        .architecture-panel {
+            padding: 22px;
+        }
+
+        .flow-list {
+            display: grid;
+            gap: 0;
+            list-style: none;
+            counter-reset: flow;
         }
 
         .flow-step {
-            position: relative;
-            min-height: 180px;
-            border: 1px solid var(--border-strong);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 18px;
+            counter-increment: flow;
+            display: grid;
+            grid-template-columns: 120px minmax(0, 1fr);
+            gap: 24px;
+            padding: 20px 0;
+            border-top: 1px solid var(--line);
         }
 
-        .flow-step::after {
-            content: '->';
-            position: absolute;
-            top: 50%;
-            right: -17px;
-            z-index: 2;
-            color: var(--accent);
-            font-family: var(--font-mono);
-            font-size: 14px;
-            transform: translateY(-50%);
+        .flow-step:first-child {
+            border-top: 0;
+            padding-top: 0;
         }
 
-        .flow-step:last-child::after {
-            display: none;
+        .flow-step:last-child {
+            padding-bottom: 0;
         }
 
-        .flow-kicker {
-            margin-bottom: 12px;
+        .flow-kicker::before {
+            content: counter(flow, decimal-leading-zero) ' / ';
+            color: var(--aws);
         }
 
         .flow-title {
             color: var(--text);
-            font-size: 19px;
-            font-weight: 650;
-            line-height: 1.2;
-            margin-bottom: 12px;
+            font-size: 18px;
+            font-weight: 680;
+            line-height: 1.25;
+            margin-bottom: 6px;
         }
 
         .flow-step p {
-            color: var(--body);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-            padding: 0 24px 24px;
-        }
-
-        .support-node {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(251, 251, 248, 0.92);
-            padding: 18px;
-        }
-
-        .node-kicker {
-            margin-bottom: 10px;
-        }
-
-        .node-title {
-            color: var(--text);
-            font-size: 16px;
-            font-weight: 650;
-            margin-bottom: 8px;
-        }
-
-        .support-node p {
-            color: var(--body);
-            font-size: 13.5px;
-            line-height: 1.6;
-        }
-
-        .story-grid,
-        .decision-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-        }
-
-        .story-card,
-        .decision-card,
-        .test-card,
-        .deck-card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.68);
-        }
-
-        .story-card,
-        .decision-card,
-        .test-card {
-            padding: 22px;
-        }
-
-        .story-number {
-            color: var(--accent);
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-
-        .card-title {
-            color: var(--text);
-            font-size: 18px;
-            font-weight: 650;
-            line-height: 1.25;
-            margin-bottom: 10px;
-        }
-
-        .card-copy {
             color: var(--body);
             font-size: 14.5px;
             line-height: 1.65;
         }
 
-        .decision-kicker {
-            color: var(--accent);
-            margin-bottom: 12px;
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
         }
 
-        .reliability-layout {
+        .decision-card,
+        .test-card {
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--panel);
+            padding: 18px;
+        }
+
+        .decision-kicker {
+            color: var(--aws-dark);
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 680;
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
+
+        .reliability-grid {
             display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
-            gap: 18px;
+            grid-template-columns: minmax(0, 0.85fr) minmax(300px, 1.15fr);
+            gap: 24px;
         }
 
         .key-panel {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--band);
-            padding: 26px;
+            border-left: 3px solid var(--aws);
+            background: var(--soft);
+            padding: 20px;
         }
 
         .key-formula {
             display: grid;
-            gap: 10px;
-            margin-top: 22px;
+            gap: 8px;
+            margin-top: 18px;
         }
 
         .key-piece {
-            border: 1px solid var(--border-strong);
-            border-radius: 6px;
-            background: var(--panel);
+            border-bottom: 1px solid var(--line-strong);
             color: var(--text);
             font-family: var(--font-mono);
             font-size: 12px;
-            letter-spacing: 0.5px;
-            padding: 11px 12px;
+            letter-spacing: 0.3px;
+            padding: 8px 0;
         }
 
         .key-rule {
             margin-top: 20px;
             color: var(--body);
-            font-size: 15px;
+            font-size: 14.5px;
             line-height: 1.65;
-        }
-
-        .sequence-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .sequence-item {
-            display: grid;
-            grid-template-columns: 38px minmax(0, 1fr);
-            gap: 14px;
-            align-items: start;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 16px;
-        }
-
-        .sequence-index {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 34px;
-            height: 34px;
-            border-radius: 6px;
-            background: var(--accent-soft);
-            color: var(--accent);
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 500;
-        }
-
-        .sequence-item h3 {
-            color: var(--text);
-            font-size: 15px;
-            font-weight: 650;
-            margin-bottom: 5px;
-        }
-
-        .sequence-item p {
-            color: var(--body);
-            font-size: 14px;
-            line-height: 1.6;
         }
 
         .results-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            background: var(--panel);
+            overflow: hidden;
             margin-bottom: 18px;
         }
 
         .result-card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--text);
-            color: var(--bg);
-            padding: 22px;
+            padding: 18px;
+            border-left: 1px solid var(--line);
+        }
+
+        .result-card:first-child {
+            border-left: 0;
         }
 
         .result-label {
-            color: rgba(251, 251, 248, 0.64);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .result-value {
-            font-size: 30px;
-            font-weight: 650;
+            color: var(--text);
+            font-size: 26px;
+            font-weight: 680;
             line-height: 1;
         }
 
         .result-copy {
-            color: rgba(251, 251, 248, 0.74);
-            font-size: 13.5px;
-            line-height: 1.55;
             margin-top: 10px;
         }
 
         .test-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 16px;
-            margin-top: 28px;
+            gap: 14px;
+            margin-top: 22px;
         }
 
         .deck-card {
             display: grid;
-            grid-template-columns: minmax(0, 0.92fr) minmax(300px, 1.08fr);
-            gap: 24px;
-            overflow: hidden;
+            grid-template-columns: 260px minmax(0, 1fr);
+            gap: 0;
         }
 
         .deck-preview {
-            min-height: 260px;
-            background: var(--band);
+            min-height: 210px;
+            background: var(--soft);
         }
 
         .deck-preview img {
@@ -568,13 +441,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 26px;
+            padding: 24px;
         }
 
         .deck-content p {
-            color: var(--body);
-            font-size: 15px;
-            line-height: 1.7;
             margin: 12px 0 22px;
         }
 
@@ -587,34 +457,35 @@
         @media (max-width: 920px) {
             .hero,
             .section-header,
-            .reliability-layout,
+            .reliability-grid,
             .deck-card {
                 grid-template-columns: 1fr;
             }
 
             h1 {
-                font-size: 64px;
+                font-size: 46px;
             }
 
             .section-title {
-                font-size: 34px;
+                font-size: 28px;
             }
 
             .topbar {
-                margin-bottom: 46px;
+                margin-bottom: 40px;
             }
 
-            .flow-grid,
-            .story-grid,
             .decision-grid,
             .results-grid,
-            .test-grid,
-            .support-grid {
+            .test-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .flow-step::after {
-                display: none;
+            .result-card:nth-child(odd) {
+                border-left: 0;
+            }
+
+            .result-card:nth-child(n + 3) {
+                border-top: 1px solid var(--line);
             }
         }
 
@@ -624,44 +495,52 @@
                 padding-top: 26px;
             }
 
-            .topbar,
-            .hero-actions,
-            .footer-actions {
+            .topbar {
                 align-items: flex-start;
                 flex-direction: column;
             }
 
             h1 {
-                font-size: 46px;
-                line-height: 1;
+                font-size: 36px;
+                line-height: 1.05;
             }
 
             .lead {
-                font-size: 18px;
+                font-size: 16px;
             }
 
             .section-title {
-                font-size: 28px;
+                font-size: 25px;
             }
 
             .section {
-                padding: 50px 0;
+                padding: 42px 0;
             }
 
-            .flow-grid,
-            .story-grid,
             .decision-grid,
             .results-grid,
-            .test-grid,
-            .support-grid {
+            .test-grid {
                 grid-template-columns: 1fr;
-                padding-left: 16px;
-                padding-right: 16px;
             }
 
-            .map-header {
-                align-items: flex-start;
+            .result-card {
+                border-left: 0;
+                border-top: 1px solid var(--line);
+            }
+
+            .result-card:first-child {
+                border-top: 0;
+            }
+
+            .flow-step {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .hero-actions,
+            .footer-actions {
                 flex-direction: column;
+                align-items: stretch;
             }
 
             .button {
@@ -669,17 +548,13 @@
             }
 
             .deck-preview {
-                min-height: 190px;
+                min-height: 180px;
             }
 
-            .metric-card,
-            .story-card,
             .decision-card,
             .test-card,
-            .support-node,
             .flow-step,
             .result-card,
-            .sequence-item,
             .key-panel,
             .section-copy,
             .lead {
@@ -690,7 +565,7 @@
 
         @media (max-width: 420px) {
             h1 {
-                font-size: 38px;
+                font-size: 32px;
             }
         }
     </style>
@@ -706,33 +581,34 @@
 
         <header class="hero">
             <div>
-                <div class="eyebrow">AWS internship / architecture case study</div>
-                <h1>Billing notifications as a configurable event system.</h1>
+                <div class="eyebrow">AWS internship / billing platform</div>
+                <h1>AWS Billing Notification Automation</h1>
                 <p class="lead">
-                    I helped design and build an event-driven notification path for AWS billing lifecycle emails, moving
-                    repeated pipeline work into configuration, routing rules, and a thin execution layer.
+                    I helped build a config-driven, event-based path for billing lifecycle emails. The goal was simple:
+                    make new customer notices faster to add while keeping duplicate prevention, validation, and handoff
+                    behavior predictable.
                 </p>
                 <div class="hero-actions">
-                    <a class="button" href="#architecture">View architecture</a>
-                    <a class="button secondary" href="#results">See results</a>
+                    <a class="button" href="#architecture">Architecture</a>
+                    <a class="button secondary" href="#results">Impact</a>
                 </div>
             </div>
 
-            <aside class="hero-panel" aria-label="Project highlights">
-                <div class="metric-card">
-                    <div class="metric-label">Deployment path</div>
-                    <div class="metric-value">weeks -> hours</div>
-                    <p class="metric-copy">New notification types moved from repeated service work to a config-first path.</p>
+            <aside class="fact-list" aria-label="Project highlights">
+                <div class="fact-item">
+                    <div class="fact-label">Role</div>
+                    <div class="fact-value">Design + implementation</div>
+                    <p class="fact-copy">EventBridge routing, Lambda validation, idempotency design, and handoff docs.</p>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-label">Traffic target</div>
-                    <div class="metric-value">40+ TPS</div>
-                    <p class="metric-copy">Designed around billing-cycle bursts without blocking upstream services.</p>
+                <div class="fact-item">
+                    <div class="fact-label">Result</div>
+                    <div class="fact-value">Weeks to hours</div>
+                    <p class="fact-copy">New notification types could follow a config-first extension path.</p>
                 </div>
-                <div class="metric-card">
-                    <div class="metric-label">Core constraint</div>
-                    <div class="metric-value">0 dupes</div>
-                    <p class="metric-copy">Idempotency used stable business identity, not unstable retry metadata.</p>
+                <div class="fact-item">
+                    <div class="fact-label">Constraint</div>
+                    <div class="fact-value">No duplicate sends</div>
+                    <p class="fact-copy">Idempotency used stable business identity, not retry metadata.</p>
                 </div>
             </aside>
         </header>
@@ -740,110 +616,77 @@
         <section class="section" aria-labelledby="context-title">
             <div class="section-header">
                 <div>
-                    <div class="section-eyebrow">01 / Context</div>
-                    <h2 class="section-title" id="context-title">The problem was not sending email. It was making change safe.</h2>
+                    <div class="section-eyebrow">Context</div>
+                    <h2 class="section-title" id="context-title">The hard part was safe change.</h2>
                 </div>
                 <p class="section-copy">
                     Transfer Billing creates customer-facing notices across a billing lifecycle: initiated, scheduled,
                     termination approaching, error states, and follow-up reminders. The old shape pushed each new email
-                    type toward its own pipeline work, which made growth slower and increased the chance of inconsistent
-                    behavior.
+                    type toward repeated pipeline work.
                 </p>
             </div>
 
-            <div class="story-grid">
-                <article class="story-card">
-                    <div class="story-number">01</div>
-                    <h3 class="card-title">Billing responsibility changes</h3>
-                    <p class="card-copy">Account relationships can move through several states, each with different customer notification needs.</p>
-                </article>
-                <article class="story-card">
-                    <div class="story-number">02</div>
-                    <h3 class="card-title">Customers need reliable updates</h3>
-                    <p class="card-copy">Duplicate, missing, or incorrect emails affect trust, billing clarity, and support load.</p>
-                </article>
-                <article class="story-card">
-                    <div class="story-number">03</div>
-                    <h3 class="card-title">Teams need faster extension</h3>
-                    <p class="card-copy">The target was one reusable path where new notices could be added through validation and template config.</p>
-                </article>
-            </div>
+            <ul class="plain-list">
+                <li>Customers needed reliable billing status updates without duplicate, missing, or incorrect emails.</li>
+                <li>Engineers needed one reusable path instead of a new mini-pipeline for every notification type.</li>
+                <li>The system needed to absorb billing-cycle bursts without making upstream services wait on email delivery.</li>
+            </ul>
         </section>
 
         <section class="section" id="architecture" aria-labelledby="architecture-title">
             <div class="section-header">
                 <div>
-                    <div class="section-eyebrow">02 / Architecture</div>
-                    <h2 class="section-title" id="architecture-title">One async path, clear ownership at each step.</h2>
+                    <div class="section-eyebrow">Architecture</div>
+                    <h2 class="section-title" id="architecture-title">One async path with clear ownership.</h2>
                 </div>
                 <p class="section-copy">
-                    EventBridge owned filtering, enrichment, and invalid-event routing. Lambda stayed intentionally
-                    thin: validate the safety boundary, call the internal email service, and avoid taking over rendering,
-                    retry, or delivery concerns.
+                    EventBridge handled routing and enrichment. Lambda stayed thin: validate the safety boundary,
+                    build the outbound request, and hand delivery to the internal email service.
                 </p>
             </div>
 
-            <div class="system-map">
-                <div class="map-header">
-                    <div class="map-title">Billing notification flow</div>
-                    <div class="map-legend" aria-label="Architecture legend">
-                        <span class="legend-item"><span class="legend-dot"></span>routing</span>
-                        <span class="legend-item"><span class="legend-dot blue"></span>execution</span>
-                        <span class="legend-item"><span class="legend-dot amber"></span>safety</span>
-                    </div>
-                </div>
-
-                <div class="flow-grid">
-                    <article class="flow-step">
+            <div class="architecture-panel">
+                <ol class="flow-list">
+                    <li class="flow-step">
                         <div class="flow-kicker">Producer</div>
-                        <h3 class="flow-title">Upstream billing services</h3>
-                        <p>Publish lifecycle events when billing responsibility moves or a scheduled notice is due.</p>
-                    </article>
-                    <article class="flow-step">
+                        <div>
+                            <h3 class="flow-title">Upstream billing services</h3>
+                            <p>Publish lifecycle events when billing responsibility changes or a scheduled notice is due.</p>
+                        </div>
+                    </li>
+                    <li class="flow-step">
                         <div class="flow-kicker">Router</div>
-                        <h3 class="flow-title">EventBridge</h3>
-                        <p>Filters event types, enriches valid events with template IDs, and routes invalid messages early.</p>
-                    </article>
-                    <article class="flow-step">
+                        <div>
+                            <h3 class="flow-title">EventBridge</h3>
+                            <p>Filters supported event types, enriches valid events with template IDs, and routes invalid messages early.</p>
+                        </div>
+                    </li>
+                    <li class="flow-step">
                         <div class="flow-kicker">Executor</div>
-                        <h3 class="flow-title">Lambda</h3>
-                        <p>Runs safety validation, builds the outbound request, and hands work to the email service.</p>
-                    </article>
-                    <article class="flow-step">
+                        <div>
+                            <h3 class="flow-title">Lambda</h3>
+                            <p>Runs validation, creates the email-service request, and keeps rendering and delivery concerns out of compute.</p>
+                        </div>
+                    </li>
+                    <li class="flow-step">
                         <div class="flow-kicker">Delivery</div>
-                        <h3 class="flow-title">Internal email service</h3>
-                        <p>Renders the right template, handles delivery retries, and sends the customer notification.</p>
-                    </article>
-                </div>
-
-                <div class="support-grid">
-                    <article class="support-node">
-                        <div class="node-kicker">Config</div>
-                        <h3 class="node-title">JSON-defined notices</h3>
-                        <p>Event types, required template fields, and template IDs were defined outside the core execution code.</p>
-                    </article>
-                    <article class="support-node">
-                        <div class="node-kicker">DLQ</div>
-                        <h3 class="node-title">Early invalid-event path</h3>
-                        <p>Malformed or unsupported events could be rejected before they reached the core notification logic.</p>
-                    </article>
-                    <article class="support-node">
-                        <div class="node-kicker">Idempotency</div>
-                        <h3 class="node-title">Stable logical keys</h3>
-                        <p>Retries and replays map to the same intended customer notice instead of creating duplicate sends.</p>
-                    </article>
-                </div>
+                        <div>
+                            <h3 class="flow-title">Internal email service</h3>
+                            <p>Owns template rendering, delivery retries, and final customer notification delivery.</p>
+                        </div>
+                    </li>
+                </ol>
             </div>
         </section>
 
         <section class="section" aria-labelledby="decisions-title">
             <div class="section-header">
                 <div>
-                    <div class="section-eyebrow">03 / Design choices</div>
-                    <h2 class="section-title" id="decisions-title">The engineering decision was where responsibility belonged.</h2>
+                    <div class="section-eyebrow">Design choices</div>
+                    <h2 class="section-title" id="decisions-title">Put responsibility where it belonged.</h2>
                 </div>
                 <p class="section-copy">
-                    The architecture avoided packing every concern into Lambda. Routing, validation boundaries,
+                    The important design work was deciding what Lambda should not own. Routing, invalid-event handling,
                     template selection, duplicate prevention, and delivery retries each had a clearer owner.
                 </p>
             </div>
@@ -870,7 +713,7 @@
         <section class="section" aria-labelledby="reliability-title">
             <div class="section-header">
                 <div>
-                    <div class="section-eyebrow">04 / Reliability</div>
+                    <div class="section-eyebrow">Reliability</div>
                     <h2 class="section-title" id="reliability-title">Idempotency needed a business key, not a timestamp.</h2>
                 </div>
                 <p class="section-copy">
@@ -879,10 +722,10 @@
                 </p>
             </div>
 
-            <div class="reliability-layout">
-                <aside class="key-panel">
-                    <div class="section-eyebrow">Logical uniqueness key</div>
-                    <div class="key-formula" aria-label="Idempotency key formula">
+            <div class="reliability-grid">
+                <aside class="key-panel" aria-labelledby="key-title">
+                    <div class="section-eyebrow" id="key-title">Logical uniqueness key</div>
+                    <div class="key-formula">
                         <div class="key-piece">recipient email</div>
                         <div class="key-piece">billing relationship</div>
                         <div class="key-piece">notification type</div>
@@ -894,37 +737,19 @@
                     </p>
                 </aside>
 
-                <div class="sequence-list">
-                    <article class="sequence-item">
-                        <span class="sequence-index">01</span>
-                        <div>
-                            <h3>Timestamps were too unstable</h3>
-                            <p>Event time could change across retries, so it was not reliable enough to identify the intended notice.</p>
-                        </div>
-                    </article>
-                    <article class="sequence-item">
-                        <span class="sequence-index">02</span>
-                        <div>
-                            <h3>Scheduled date made intent explicit</h3>
-                            <p>I recommended using a scheduled date field so repeated attempts pointed back to the same customer-facing event.</p>
-                        </div>
-                    </article>
-                    <article class="sequence-item">
-                        <span class="sequence-index">03</span>
-                        <div>
-                            <h3>Keys expired after the protection window</h3>
-                            <p>Stored idempotency keys used a 14-day TTL to prevent duplicate sends without keeping data indefinitely.</p>
-                        </div>
-                    </article>
-                </div>
+                <ul class="plain-list">
+                    <li><span><strong>Timestamps were too unstable.</strong> Event time could change across retries, so it was not reliable enough to identify the intended notice.</span></li>
+                    <li><span><strong>Scheduled date made intent explicit.</strong> Repeated attempts pointed back to the same customer-facing event.</span></li>
+                    <li><span><strong>Keys expired after the protection window.</strong> A 14-day TTL prevented duplicate sends without storing keys indefinitely.</span></li>
+                </ul>
             </div>
         </section>
 
         <section class="section" id="results" aria-labelledby="results-title">
             <div class="section-header">
                 <div>
-                    <div class="section-eyebrow">05 / Testing and impact</div>
-                    <h2 class="section-title" id="results-title">The outcome was a reusable notification platform.</h2>
+                    <div class="section-eyebrow">Testing and impact</div>
+                    <h2 class="section-title" id="results-title">Reusable platform, less repeated work.</h2>
                 </div>
                 <p class="section-copy">
                     Testing covered validation edges, end-to-end email behavior, duplicate injection, and billing-cycle
@@ -981,8 +806,8 @@
                     <div class="section-eyebrow">Reference deck</div>
                     <h2 class="section-title" id="deck-title">Prefer slides?</h2>
                     <p>
-                        The original 10-slide walkthrough is still available as a supporting artifact, but this page now
-                        carries the architecture story directly instead of sending visitors straight into a PDF.
+                        The original 10-slide walkthrough is still available as a supporting artifact. This page keeps
+                        the main architecture story readable without making visitors open a PDF first.
                     </p>
                     <div class="footer-actions">
                         <a class="button" href="assets/aws-notification-walkthrough.pdf" target="_blank"
