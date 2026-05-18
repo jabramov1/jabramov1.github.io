@@ -13,14 +13,20 @@
     <style>
         :root {
             --bg: #fbfbf8;
+            --band: #f2f2ee;
             --panel: #ffffff;
             --text: #141412;
             --body: #484842;
             --muted: #85857c;
             --accent: #586b45;
             --accent-soft: #e7eddf;
+            --blue: #536e8a;
+            --blue-soft: #e7edf2;
+            --amber: #9b6632;
+            --amber-soft: #f1e6d8;
             --border: #e4e4dc;
             --border-strong: #c9c9bf;
+            --shadow: 0 24px 60px rgba(42, 42, 35, 0.08);
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
         }
@@ -33,12 +39,17 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             min-height: 100vh;
             background: var(--bg);
             color: var(--text);
             font-family: var(--font-sans);
             line-height: 1.5;
+            overflow-x: hidden;
         }
 
         a {
@@ -46,12 +57,21 @@
         }
 
         .page {
-            width: min(1000px, calc(100% - 40px));
+            width: min(1120px, calc(100% - 40px));
             margin: 0 auto;
-            padding: 38px 0 58px;
+            padding: 34px 0 64px;
         }
 
-        .back-link {
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 72px;
+        }
+
+        .back-link,
+        .quiet-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -61,11 +81,11 @@
             letter-spacing: 0.7px;
             text-decoration: none;
             text-transform: uppercase;
-            margin-bottom: 46px;
             transition: color 0.2s;
         }
 
-        .back-link:hover {
+        .back-link:hover,
+        .quiet-link:hover {
             color: var(--text);
         }
 
@@ -74,161 +94,68 @@
             color: var(--accent);
         }
 
+        .quiet-link::after {
+            content: '->';
+            color: var(--accent);
+        }
+
         .hero {
-            max-width: 780px;
-            margin-bottom: 34px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+            gap: 56px;
+            align-items: end;
+            padding-bottom: 54px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .eyebrow,
+        .section-eyebrow,
+        .metric-label,
+        .flow-kicker,
+        .node-kicker,
+        .result-label,
+        .decision-kicker {
+            color: var(--muted);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
         }
 
         .eyebrow {
-            color: var(--muted);
-            font-family: var(--font-mono);
-            font-size: 10px;
-            letter-spacing: 1.6px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         h1 {
+            max-width: 760px;
             color: var(--text);
-            font-size: clamp(34px, 6vw, 58px);
+            font-size: 82px;
             font-weight: 650;
-            line-height: 1.03;
-            margin-bottom: 18px;
-        }
-
-        .subtitle {
-            color: var(--body);
-            font-size: clamp(18px, 2vw, 22px);
-            line-height: 1.45;
-            margin-bottom: 18px;
-        }
-
-        .intro {
-            color: var(--body);
-            font-size: 15.5px;
-            line-height: 1.7;
-            max-width: 720px;
-        }
-
-        .deck-card,
-        .coverage-card,
-        .summary-card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.62);
-        }
-
-        .deck-card {
-            display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
-            gap: 28px;
-            align-items: stretch;
-            padding: clamp(20px, 4vw, 30px);
-            margin-bottom: 34px;
-            overflow: hidden;
-        }
-
-        .deck-visual {
-            min-height: 280px;
-            border: 1px solid var(--border);
-            border-radius: 7px;
-            background: #f2f2ee;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .deck-visual img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .slide-count {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            border: 1px solid rgba(20, 20, 18, 0.14);
-            border-radius: 4px;
-            background: rgba(251, 251, 248, 0.9);
-            color: var(--text);
-            font-family: var(--font-mono);
-            font-size: 10px;
-            letter-spacing: 0.7px;
-            padding: 5px 8px;
-            text-transform: uppercase;
-        }
-
-        .deck-content {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-        }
-
-        .deck-kicker {
-            color: var(--muted);
-            font-family: var(--font-mono);
-            font-size: 10px;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        h2 {
-            font-size: clamp(24px, 3vw, 32px);
-            font-weight: 650;
-            line-height: 1.15;
-            margin-bottom: 12px;
-        }
-
-        .deck-overview {
-            color: var(--accent);
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            margin-bottom: 18px;
-        }
-
-        .topic-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-            margin-bottom: 18px;
-        }
-
-        .topic-pill {
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            background: rgba(251, 251, 248, 0.82);
-            color: var(--muted);
-            font-family: var(--font-mono);
-            font-size: 10px;
-            letter-spacing: 0.5px;
-            padding: 5px 8px;
-        }
-
-        .deck-description {
-            color: var(--body);
-            font-size: 15px;
-            line-height: 1.65;
+            line-height: 0.96;
             margin-bottom: 24px;
-            max-width: 560px;
+            overflow-wrap: anywhere;
         }
 
-        .deck-actions {
+        .lead {
+            max-width: 700px;
+            color: var(--body);
+            font-size: 22px;
+            line-height: 1.5;
+        }
+
+        .hero-actions {
             display: flex;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 14px;
-            margin-top: auto;
+            gap: 12px;
+            margin-top: 32px;
         }
 
-        .primary-button {
+        .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             min-height: 42px;
+            border: 1px solid var(--text);
             border-radius: 6px;
             background: var(--text);
             color: var(--bg);
@@ -236,151 +163,534 @@
             font-weight: 650;
             text-decoration: none;
             padding: 0 16px;
-            transition: opacity 0.2s, transform 0.2s;
+            transition: opacity 0.2s, transform 0.2s, background 0.2s, color 0.2s;
         }
 
-        .primary-button:hover {
+        .button.secondary {
+            background: transparent;
+            color: var(--text);
+        }
+
+        .button:hover {
             opacity: 0.9;
             transform: translateY(-1px);
         }
 
-        .secondary-link {
-            color: var(--text);
-            font-family: var(--font-mono);
-            font-size: 11px;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            border-bottom: 1px solid var(--text);
-            padding-bottom: 2px;
-            transition: opacity 0.2s;
-        }
-
-        .secondary-link:hover {
-            opacity: 0.55;
-        }
-
-        .section {
-            margin-top: 40px;
-        }
-
-        .section-heading {
-            color: var(--text);
-            font-size: 23px;
-            font-weight: 650;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .coverage-grid {
+        .hero-panel {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 12px;
         }
 
-        .coverage-card {
+        .metric-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.72);
             padding: 18px;
         }
 
-        .coverage-label {
-            color: var(--accent);
-            font-family: var(--font-mono);
-            font-size: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+        .metric-value {
+            color: var(--text);
+            font-size: 28px;
+            font-weight: 650;
+            line-height: 1;
+            margin-top: 8px;
         }
 
-        .coverage-card p {
+        .metric-copy {
             color: var(--body);
             font-size: 14px;
             line-height: 1.55;
+            margin-top: 8px;
         }
 
-        .summary-card {
-            padding: 22px;
-        }
-
-        .summary-list {
-            display: grid;
-            gap: 14px;
-        }
-
-        .summary-row {
-            display: grid;
-            grid-template-columns: 150px minmax(0, 1fr);
-            gap: 18px;
-            padding-bottom: 14px;
+        .section {
+            padding: 66px 0;
             border-bottom: 1px solid var(--border);
         }
 
-        .summary-row:last-child {
-            padding-bottom: 0;
+        .section:last-of-type {
             border-bottom: 0;
         }
 
-        .summary-label {
+        .section-header {
+            display: grid;
+            grid-template-columns: minmax(0, 0.75fr) minmax(280px, 1fr);
+            gap: 44px;
+            align-items: start;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: var(--text);
+            font-size: 40px;
+            font-weight: 650;
+            line-height: 1.08;
+            margin-top: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .section-copy {
+            color: var(--body);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .system-map {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px),
+                var(--panel);
+            background-size: 32px 32px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .map-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(251, 251, 248, 0.9);
+            padding: 16px 18px;
+        }
+
+        .map-title {
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .map-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             color: var(--muted);
             font-family: var(--font-mono);
             font-size: 10px;
-            letter-spacing: 1px;
+            letter-spacing: 0.4px;
             text-transform: uppercase;
         }
 
-        .summary-text {
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .legend-dot.blue {
+            background: var(--blue);
+        }
+
+        .legend-dot.amber {
+            background: var(--amber);
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            padding: 24px;
+        }
+
+        .flow-step {
+            position: relative;
+            min-height: 180px;
+            border: 1px solid var(--border-strong);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 18px;
+        }
+
+        .flow-step::after {
+            content: '->';
+            position: absolute;
+            top: 50%;
+            right: -17px;
+            z-index: 2;
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            transform: translateY(-50%);
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .flow-kicker {
+            margin-bottom: 12px;
+        }
+
+        .flow-title {
+            color: var(--text);
+            font-size: 19px;
+            font-weight: 650;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .flow-step p {
+            color: var(--body);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            padding: 0 24px 24px;
+        }
+
+        .support-node {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(251, 251, 248, 0.92);
+            padding: 18px;
+        }
+
+        .node-kicker {
+            margin-bottom: 10px;
+        }
+
+        .node-title {
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 650;
+            margin-bottom: 8px;
+        }
+
+        .support-node p {
+            color: var(--body);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .story-grid,
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .story-card,
+        .decision-card,
+        .test-card,
+        .deck-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.68);
+        }
+
+        .story-card,
+        .decision-card,
+        .test-card {
+            padding: 22px;
+        }
+
+        .story-number {
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 650;
+            line-height: 1.25;
+            margin-bottom: 10px;
+        }
+
+        .card-copy {
             color: var(--body);
             font-size: 14.5px;
             line-height: 1.65;
         }
 
-        .summary-text strong {
-            color: var(--text);
-            font-weight: 600;
+        .decision-kicker {
+            color: var(--accent);
+            margin-bottom: 12px;
         }
 
-        @media (max-width: 840px) {
-            .page {
-                width: min(100% - 28px, 1000px);
-                padding-top: 28px;
-            }
+        .reliability-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+            gap: 18px;
+        }
 
-            .back-link {
-                margin-bottom: 34px;
-            }
+        .key-panel {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--band);
+            padding: 26px;
+        }
 
+        .key-formula {
+            display: grid;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .key-piece {
+            border: 1px solid var(--border-strong);
+            border-radius: 6px;
+            background: var(--panel);
+            color: var(--text);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            padding: 11px 12px;
+        }
+
+        .key-rule {
+            margin-top: 20px;
+            color: var(--body);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .sequence-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .sequence-item {
+            display: grid;
+            grid-template-columns: 38px minmax(0, 1fr);
+            gap: 14px;
+            align-items: start;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 16px;
+        }
+
+        .sequence-index {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .sequence-item h3 {
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 650;
+            margin-bottom: 5px;
+        }
+
+        .sequence-item p {
+            color: var(--body);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .result-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--text);
+            color: var(--bg);
+            padding: 22px;
+        }
+
+        .result-label {
+            color: rgba(251, 251, 248, 0.64);
+            margin-bottom: 12px;
+        }
+
+        .result-value {
+            font-size: 30px;
+            font-weight: 650;
+            line-height: 1;
+        }
+
+        .result-copy {
+            color: rgba(251, 251, 248, 0.74);
+            font-size: 13.5px;
+            line-height: 1.55;
+            margin-top: 10px;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .deck-card {
+            display: grid;
+            grid-template-columns: minmax(0, 0.92fr) minmax(300px, 1.08fr);
+            gap: 24px;
+            overflow: hidden;
+        }
+
+        .deck-preview {
+            min-height: 260px;
+            background: var(--band);
+        }
+
+        .deck-preview img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .deck-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 26px;
+        }
+
+        .deck-content p {
+            color: var(--body);
+            font-size: 15px;
+            line-height: 1.7;
+            margin: 12px 0 22px;
+        }
+
+        .footer-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 920px) {
+            .hero,
+            .section-header,
+            .reliability-layout,
             .deck-card {
                 grid-template-columns: 1fr;
             }
 
-            .deck-visual {
-                min-height: 220px;
+            h1 {
+                font-size: 64px;
             }
 
-            .coverage-grid {
+            .section-title {
+                font-size: 34px;
+            }
+
+            .topbar {
+                margin-bottom: 46px;
+            }
+
+            .flow-grid,
+            .story-grid,
+            .decision-grid,
+            .results-grid,
+            .test-grid,
+            .support-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .summary-row {
-                grid-template-columns: 1fr;
-                gap: 6px;
+            .flow-step::after {
+                display: none;
             }
         }
 
-        @media (max-width: 560px) {
-            h1 {
-                font-size: clamp(34px, 10vw, 42px);
+        @media (max-width: 620px) {
+            .page {
+                width: min(1120px, calc(100% - 28px));
+                padding-top: 26px;
             }
 
-            .coverage-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .deck-actions {
+            .topbar,
+            .hero-actions,
+            .footer-actions {
                 align-items: flex-start;
                 flex-direction: column;
             }
 
-            .primary-button {
+            h1 {
+                font-size: 46px;
+                line-height: 1;
+            }
+
+            .lead {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .flow-grid,
+            .story-grid,
+            .decision-grid,
+            .results-grid,
+            .test-grid,
+            .support-grid {
+                grid-template-columns: 1fr;
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .map-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .button {
                 width: 100%;
+            }
+
+            .deck-preview {
+                min-height: 190px;
+            }
+
+            .metric-card,
+            .story-card,
+            .decision-card,
+            .test-card,
+            .support-node,
+            .flow-step,
+            .result-card,
+            .sequence-item,
+            .key-panel,
+            .section-copy,
+            .lead {
+                min-width: 0;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        @media (max-width: 420px) {
+            h1 {
+                font-size: 38px;
             }
         }
     </style>
@@ -388,101 +698,296 @@
 
 <body>
     <main class="page">
-        <a class="back-link" href="index.html#projects">Back to portfolio</a>
+        <nav class="topbar" aria-label="Project navigation">
+            <a class="back-link" href="index.html#projects">Back to portfolio</a>
+            <a class="quiet-link" href="assets/aws-notification-walkthrough.pdf" target="_blank"
+                rel="noopener noreferrer">Original slide deck</a>
+        </nav>
 
         <header class="hero">
-            <div class="eyebrow">AWS INTERNSHIP / ARCHITECTURE</div>
-            <h1>AWS Billing Notification Automation</h1>
-            <p class="subtitle">Architecture walkthrough for a configurable, event-driven notification system.</p>
-            <p class="intro">
-                This project focused on reducing repeated engineering work for AWS billing notification changes by
-                moving routing, enrichment, and notification behavior into a configurable event-driven architecture.
-            </p>
+            <div>
+                <div class="eyebrow">AWS internship / architecture case study</div>
+                <h1>Billing notifications as a configurable event system.</h1>
+                <p class="lead">
+                    I helped design and build an event-driven notification path for AWS billing lifecycle emails, moving
+                    repeated pipeline work into configuration, routing rules, and a thin execution layer.
+                </p>
+                <div class="hero-actions">
+                    <a class="button" href="#architecture">View architecture</a>
+                    <a class="button secondary" href="#results">See results</a>
+                </div>
+            </div>
+
+            <aside class="hero-panel" aria-label="Project highlights">
+                <div class="metric-card">
+                    <div class="metric-label">Deployment path</div>
+                    <div class="metric-value">weeks -> hours</div>
+                    <p class="metric-copy">New notification types moved from repeated service work to a config-first path.</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Traffic target</div>
+                    <div class="metric-value">40+ TPS</div>
+                    <p class="metric-copy">Designed around billing-cycle bursts without blocking upstream services.</p>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Core constraint</div>
+                    <div class="metric-value">0 dupes</div>
+                    <p class="metric-copy">Idempotency used stable business identity, not unstable retry metadata.</p>
+                </div>
+            </aside>
         </header>
 
-        <section class="deck-card" aria-labelledby="deck-title">
-            <div class="deck-visual">
-                <img src="assets/aws-notification-deck-preview.png"
-                    alt="Preview of the AWS billing notification automation architecture deck">
-                <span class="slide-count">10 slides</span>
-            </div>
-
-            <div class="deck-content">
-                <div class="deck-kicker">Architecture Walkthrough Deck</div>
-                <h2 id="deck-title">AWS Billing Notification Automation</h2>
-                <div class="deck-overview">10-slide overview</div>
-                <div class="topic-pills" aria-label="Key topics">
-                    <span class="topic-pill">EventBridge</span>
-                    <span class="topic-pill">Lambda</span>
-                    <span class="topic-pill">Config-driven</span>
-                    <span class="topic-pill">Idempotency</span>
+        <section class="section" aria-labelledby="context-title">
+            <div class="section-header">
+                <div>
+                    <div class="section-eyebrow">01 / Context</div>
+                    <h2 class="section-title" id="context-title">The problem was not sending email. It was making change safe.</h2>
                 </div>
-                <p class="deck-description">
-                    The deck explains the notification problem, the event routing architecture, how Lambda stayed thin,
-                    and why stable logical uniqueness mattered for reliable idempotent delivery.
+                <p class="section-copy">
+                    Transfer Billing creates customer-facing notices across a billing lifecycle: initiated, scheduled,
+                    termination approaching, error states, and follow-up reminders. The old shape pushed each new email
+                    type toward its own pipeline work, which made growth slower and increased the chance of inconsistent
+                    behavior.
                 </p>
-                <div class="deck-actions">
-                    <a class="primary-button" href="assets/aws-notification-walkthrough.pdf" target="_blank"
-                        rel="noopener noreferrer">Open slide deck PDF</a>
-                    <a class="secondary-link" href="assets/aws-notification-walkthrough.pdf" target="_blank"
-                        rel="noopener noreferrer" download>Download PDF</a>
+            </div>
+
+            <div class="story-grid">
+                <article class="story-card">
+                    <div class="story-number">01</div>
+                    <h3 class="card-title">Billing responsibility changes</h3>
+                    <p class="card-copy">Account relationships can move through several states, each with different customer notification needs.</p>
+                </article>
+                <article class="story-card">
+                    <div class="story-number">02</div>
+                    <h3 class="card-title">Customers need reliable updates</h3>
+                    <p class="card-copy">Duplicate, missing, or incorrect emails affect trust, billing clarity, and support load.</p>
+                </article>
+                <article class="story-card">
+                    <div class="story-number">03</div>
+                    <h3 class="card-title">Teams need faster extension</h3>
+                    <p class="card-copy">The target was one reusable path where new notices could be added through validation and template config.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="architecture" aria-labelledby="architecture-title">
+            <div class="section-header">
+                <div>
+                    <div class="section-eyebrow">02 / Architecture</div>
+                    <h2 class="section-title" id="architecture-title">One async path, clear ownership at each step.</h2>
+                </div>
+                <p class="section-copy">
+                    EventBridge owned filtering, enrichment, and invalid-event routing. Lambda stayed intentionally
+                    thin: validate the safety boundary, call the internal email service, and avoid taking over rendering,
+                    retry, or delivery concerns.
+                </p>
+            </div>
+
+            <div class="system-map">
+                <div class="map-header">
+                    <div class="map-title">Billing notification flow</div>
+                    <div class="map-legend" aria-label="Architecture legend">
+                        <span class="legend-item"><span class="legend-dot"></span>routing</span>
+                        <span class="legend-item"><span class="legend-dot blue"></span>execution</span>
+                        <span class="legend-item"><span class="legend-dot amber"></span>safety</span>
+                    </div>
+                </div>
+
+                <div class="flow-grid">
+                    <article class="flow-step">
+                        <div class="flow-kicker">Producer</div>
+                        <h3 class="flow-title">Upstream billing services</h3>
+                        <p>Publish lifecycle events when billing responsibility moves or a scheduled notice is due.</p>
+                    </article>
+                    <article class="flow-step">
+                        <div class="flow-kicker">Router</div>
+                        <h3 class="flow-title">EventBridge</h3>
+                        <p>Filters event types, enriches valid events with template IDs, and routes invalid messages early.</p>
+                    </article>
+                    <article class="flow-step">
+                        <div class="flow-kicker">Executor</div>
+                        <h3 class="flow-title">Lambda</h3>
+                        <p>Runs safety validation, builds the outbound request, and hands work to the email service.</p>
+                    </article>
+                    <article class="flow-step">
+                        <div class="flow-kicker">Delivery</div>
+                        <h3 class="flow-title">Internal email service</h3>
+                        <p>Renders the right template, handles delivery retries, and sends the customer notification.</p>
+                    </article>
+                </div>
+
+                <div class="support-grid">
+                    <article class="support-node">
+                        <div class="node-kicker">Config</div>
+                        <h3 class="node-title">JSON-defined notices</h3>
+                        <p>Event types, required template fields, and template IDs were defined outside the core execution code.</p>
+                    </article>
+                    <article class="support-node">
+                        <div class="node-kicker">DLQ</div>
+                        <h3 class="node-title">Early invalid-event path</h3>
+                        <p>Malformed or unsupported events could be rejected before they reached the core notification logic.</p>
+                    </article>
+                    <article class="support-node">
+                        <div class="node-kicker">Idempotency</div>
+                        <h3 class="node-title">Stable logical keys</h3>
+                        <p>Retries and replays map to the same intended customer notice instead of creating duplicate sends.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section class="section" aria-labelledby="covers-title">
-            <h2 class="section-heading" id="covers-title">What the deck covers</h2>
-            <div class="coverage-grid">
-                <article class="coverage-card">
-                    <div class="coverage-label">Problem</div>
-                    <p>Many notification types required repeated pipeline work.</p>
+        <section class="section" aria-labelledby="decisions-title">
+            <div class="section-header">
+                <div>
+                    <div class="section-eyebrow">03 / Design choices</div>
+                    <h2 class="section-title" id="decisions-title">The engineering decision was where responsibility belonged.</h2>
+                </div>
+                <p class="section-copy">
+                    The architecture avoided packing every concern into Lambda. Routing, validation boundaries,
+                    template selection, duplicate prevention, and delivery retries each had a clearer owner.
+                </p>
+            </div>
+
+            <div class="decision-grid">
+                <article class="decision-card">
+                    <div class="decision-kicker">EventBridge</div>
+                    <h3 class="card-title">Route and enrich before execution</h3>
+                    <p class="card-copy">The event bus decoupled producers from delivery and attached the correct template ID before Lambda ran.</p>
                 </article>
-                <article class="coverage-card">
-                    <div class="coverage-label">Architecture</div>
-                    <p>EventBridge routed and enriched events while Lambda stayed thin.</p>
+                <article class="decision-card">
+                    <div class="decision-kicker">Lambda</div>
+                    <h3 class="card-title">Keep compute narrow</h3>
+                    <p class="card-copy">Lambda focused on validation and the email-service call, keeping rendering and delivery retries out of the function.</p>
                 </article>
-                <article class="coverage-card">
-                    <div class="coverage-label">Design challenge</div>
-                    <p>Idempotency required stable logical uniqueness.</p>
-                </article>
-                <article class="coverage-card">
-                    <div class="coverage-label">Result</div>
-                    <p>Deployment time went from weeks to about 4 hours.</p>
+                <article class="decision-card">
+                    <div class="decision-kicker">Configuration</div>
+                    <h3 class="card-title">Make new emails additive</h3>
+                    <p class="card-copy">A new notification could be represented as config: allowed event type, required fields, and template mapping.</p>
                 </article>
             </div>
         </section>
 
-        <section class="section" aria-labelledby="summary-title">
-            <h2 class="section-heading" id="summary-title">Walkthrough Summary</h2>
-            <div class="summary-card">
-                <div class="summary-list">
-                    <div class="summary-row">
-                        <div class="summary-label">Goal</div>
-                        <p class="summary-text">
-                            Make AWS billing notifications easier to add and operate by shifting repeated work into
-                            reusable configuration and shared event handling.
-                        </p>
+        <section class="section" aria-labelledby="reliability-title">
+            <div class="section-header">
+                <div>
+                    <div class="section-eyebrow">04 / Reliability</div>
+                    <h2 class="section-title" id="reliability-title">Idempotency needed a business key, not a timestamp.</h2>
+                </div>
+                <p class="section-copy">
+                    Retries can change transport metadata, and legitimate repeated emails can share similar payloads.
+                    The hard part was defining what "same notification" means for customers.
+                </p>
+            </div>
+
+            <div class="reliability-layout">
+                <aside class="key-panel">
+                    <div class="section-eyebrow">Logical uniqueness key</div>
+                    <div class="key-formula" aria-label="Idempotency key formula">
+                        <div class="key-piece">recipient email</div>
+                        <div class="key-piece">billing relationship</div>
+                        <div class="key-piece">notification type</div>
+                        <div class="key-piece">scheduled date</div>
                     </div>
-                    <div class="summary-row">
-                        <div class="summary-label">System shape</div>
-                        <p class="summary-text">
-                            <strong>EventBridge</strong> handled event routing and enrichment. <strong>Lambda</strong>
-                            focused on small units of backend logic instead of owning a large, brittle pipeline.
-                        </p>
-                    </div>
-                    <div class="summary-row">
-                        <div class="summary-label">Reliability</div>
-                        <p class="summary-text">
-                            The design treated idempotency as a first-class requirement, using stable logical identity
-                            instead of relying only on transport-level delivery behavior.
-                        </p>
-                    </div>
-                    <div class="summary-row">
-                        <div class="summary-label">Outcome</div>
-                        <p class="summary-text">
-                            New notification deployments could move from multi-week pipeline work to roughly a
-                            half-day configuration path.
-                        </p>
+                    <p class="key-rule">
+                        The rule: one logical email per relationship, per day, per notification type, even if upstream
+                        retries or replays the event.
+                    </p>
+                </aside>
+
+                <div class="sequence-list">
+                    <article class="sequence-item">
+                        <span class="sequence-index">01</span>
+                        <div>
+                            <h3>Timestamps were too unstable</h3>
+                            <p>Event time could change across retries, so it was not reliable enough to identify the intended notice.</p>
+                        </div>
+                    </article>
+                    <article class="sequence-item">
+                        <span class="sequence-index">02</span>
+                        <div>
+                            <h3>Scheduled date made intent explicit</h3>
+                            <p>I recommended using a scheduled date field so repeated attempts pointed back to the same customer-facing event.</p>
+                        </div>
+                    </article>
+                    <article class="sequence-item">
+                        <span class="sequence-index">03</span>
+                        <div>
+                            <h3>Keys expired after the protection window</h3>
+                            <p>Stored idempotency keys used a 14-day TTL to prevent duplicate sends without keeping data indefinitely.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="results" aria-labelledby="results-title">
+            <div class="section-header">
+                <div>
+                    <div class="section-eyebrow">05 / Testing and impact</div>
+                    <h2 class="section-title" id="results-title">The outcome was a reusable notification platform.</h2>
+                </div>
+                <p class="section-copy">
+                    Testing covered validation edges, end-to-end email behavior, duplicate injection, and billing-cycle
+                    capacity. The project was approved and handed off with runbook documentation for the team to continue.
+                </p>
+            </div>
+
+            <div class="results-grid">
+                <article class="result-card">
+                    <div class="result-label">Deployment time</div>
+                    <div class="result-value">4 hours</div>
+                    <p class="result-copy">Approximate path for new email types after config-driven setup.</p>
+                </article>
+                <article class="result-card">
+                    <div class="result-label">Traffic design</div>
+                    <div class="result-value">40+ TPS</div>
+                    <p class="result-copy">Capacity target for billing-cycle notification bursts.</p>
+                </article>
+                <article class="result-card">
+                    <div class="result-label">Duplicate test</div>
+                    <div class="result-value">0</div>
+                    <p class="result-copy">Duplicate emails observed during duplicate-injection testing.</p>
+                </article>
+                <article class="result-card">
+                    <div class="result-label">Pipeline shape</div>
+                    <div class="result-value">1 path</div>
+                    <p class="result-copy">Replaced a pattern of separate proposed pipelines per email type.</p>
+                </article>
+            </div>
+
+            <div class="test-grid">
+                <article class="test-card">
+                    <h3 class="card-title">Unit coverage</h3>
+                    <p class="card-copy">Validation logic and edge cases were covered with a target above 90%.</p>
+                </article>
+                <article class="test-card">
+                    <h3 class="card-title">Integration path</h3>
+                    <p class="card-copy">End-to-end events triggered emails to test recipients before handoff.</p>
+                </article>
+                <article class="test-card">
+                    <h3 class="card-title">Runbook handoff</h3>
+                    <p class="card-copy">Because interns could not directly push launch, documentation carried the implementation forward.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="deck-title">
+            <div class="deck-card">
+                <div class="deck-preview">
+                    <img src="assets/aws-notification-deck-preview.png"
+                        alt="Preview slide for the AWS billing notification automation walkthrough">
+                </div>
+                <div class="deck-content">
+                    <div class="section-eyebrow">Reference deck</div>
+                    <h2 class="section-title" id="deck-title">Prefer slides?</h2>
+                    <p>
+                        The original 10-slide walkthrough is still available as a supporting artifact, but this page now
+                        carries the architecture story directly instead of sending visitors straight into a PDF.
+                    </p>
+                    <div class="footer-actions">
+                        <a class="button" href="assets/aws-notification-walkthrough.pdf" target="_blank"
+                            rel="noopener noreferrer">Open PDF</a>
+                        <a class="button secondary" href="assets/aws-notification-walkthrough.pdf" download>Download PDF</a>
                     </div>
                 </div>
             </div>

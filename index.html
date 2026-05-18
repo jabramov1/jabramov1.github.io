@@ -532,6 +532,20 @@
             cursor: pointer;
         }
 
+        .featured-architecture {
+            position: relative;
+            overflow: hidden;
+            border-color: rgba(36, 131, 123, 0.28);
+        }
+
+        .featured-architecture::before {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto;
+            height: 3px;
+            background: var(--accent);
+        }
+
         .project-card-link:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 3px;
@@ -592,6 +606,42 @@
         .project-summary strong {
             color: var(--text);
             font-weight: 650;
+        }
+
+        .project-architecture-preview {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            gap: 6px;
+            margin: 0 0 22px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: rgba(242, 240, 229, 0.58);
+        }
+
+        .architecture-node {
+            min-width: 0;
+            border: 1px solid var(--border-strong);
+            border-radius: 5px;
+            background: var(--panel);
+            color: var(--text);
+            font-family: var(--font-mono);
+            font-size: 9px;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            padding: 8px 7px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .architecture-arrow {
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            justify-self: center;
+            transform: rotate(90deg);
         }
 
         .project-audio {
@@ -703,9 +753,28 @@
             transition: opacity 0.2s;
         }
 
+        .project-link-cta {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            border: 1px solid var(--text);
+            border-radius: 5px;
+            background: var(--text);
+            color: var(--bg);
+            padding: 0 11px;
+            text-decoration: none;
+            border-bottom: 0;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
         .project-card-link:hover .project-link,
         .project-link:hover {
             opacity: 0.5;
+        }
+
+        .project-card-link:hover .project-link-cta {
+            opacity: 0.92;
+            transform: translateY(-1px);
         }
 
         .project-note {
@@ -1135,7 +1204,7 @@
                     </div>
                 </div>
 
-                <a class="project-card project-card-link" href="aws-notification-system.html"
+                <a class="project-card project-card-link featured-architecture" href="aws-notification-system.html"
                     aria-label="Open the AWS Billing Notification Automation walkthrough">
                     <div class="project-body">
                         <div class="project-kicker">Cloud Infrastructure / Internship</div>
@@ -1158,13 +1227,20 @@
                                     <strong>CloudFormation</strong>.</div>
                             </div>
                         </div>
+                        <div class="project-architecture-preview" aria-hidden="true">
+                            <span class="architecture-node">EventBridge</span>
+                            <span class="architecture-arrow">-&gt;</span>
+                            <span class="architecture-node">Lambda</span>
+                            <span class="architecture-arrow">-&gt;</span>
+                            <span class="architecture-node">Email service</span>
+                        </div>
                         <div class="project-footer">
                             <div class="project-tags">
                                 <span class="tag">AWS Lambda</span>
                                 <span class="tag">EventBridge</span>
                                 <span class="tag">CloudFormation</span>
                             </div>
-                            <span class="project-link">Architecture walkthrough</span>
+                            <span class="project-link project-link-cta">Open architecture site</span>
                         </div>
                     </div>
                 </a>
