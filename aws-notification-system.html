@@ -78,6 +78,19 @@
             text-decoration: none;
         }
 
+        .slide-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--aws-dark);
+            font-size: 14px;
+            font-weight: 680;
+            margin-top: 12px;
+            text-decoration-color: var(--aws);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+        }
+
         .back-link::before {
             content: '<-';
             color: var(--aws);
@@ -86,6 +99,14 @@
         .deck-link::after {
             content: '->';
             color: var(--aws);
+        }
+
+        .slide-link::after {
+            content: '->';
+            color: var(--aws);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1;
         }
 
         .hero {
@@ -313,7 +334,7 @@
         <nav class="topbar" aria-label="Project navigation">
             <a class="back-link" href="index.html#projects">Back to portfolio</a>
             <a class="deck-link" href="assets/aws-notification-walkthrough.pdf" target="_blank"
-                rel="noopener noreferrer">PDF</a>
+                rel="noopener noreferrer">View slide deck</a>
         </nav>
 
         <header class="hero">
@@ -349,6 +370,8 @@
         <section class="section" aria-labelledby="problem-title">
             <div>
                 <span class="label">Problem</span>
+                <a class="slide-link" href="assets/aws-notification-walkthrough.pdf" target="_blank"
+                    rel="noopener noreferrer">View slide deck</a>
                 <h2 id="problem-title">Make change safe.</h2>
             </div>
             <p class="copy">
